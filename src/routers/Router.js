@@ -17,22 +17,23 @@ function Router() {
         return (JSON.parse(localStorage.getItem('loggedInUser'))) ? true : false;
     });
 
-    //Get the environment details from the config folder
-    const environment = process.env.REACT_APP_URL;
-
-    //Api getting called
-    const getMembers = async ()=> {
-        try {
-            const url = 'http://'+environment+'/members'
-            const member = await Axios.get(url);
-            setMembersValue(member.data);
-        }catch(e){
-            console.log('Some error occured');
-        }
-    }
-
     //Trigger when app starts
     useEffect(()=>{
+        
+        //Get the environment details from the config folder
+        const environment = process.env.REACT_APP_URL;
+
+        //Api getting called
+        const getMembers = async ()=> {
+            try {
+                const url = 'http://'+environment+'/members'
+                const member = await Axios.get(url);
+                setMembersValue(member.data);
+            }catch(e){
+                console.log('Some error occured');
+            }
+        }
+
         getMembers();
     },[]);
 
@@ -47,8 +48,7 @@ function Router() {
                 <Logout setLoggedIn={setLoggedIn}/>
             </Route>
             <Route path='/members/detail'>
-                
-                <MemberCardDetails members={loggedIn}/>
+                <MemberCardDetails loggedIn={loggedIn}/>
             </Route>
             <Route path='/members'>
                 {//Sending the members state array as props

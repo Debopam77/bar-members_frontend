@@ -1,0 +1,21 @@
+.detailedCardPage{
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pad{
+    padding : 1rem;
+}
+button {
+    display : flex;
+    align-items: center;
+}
+
+.editIcon {
+    background-image: var(--edit-icon);
+    background-size: cover;
+    padding : 0.75rem;
+    margin : 0.5rem;
+}

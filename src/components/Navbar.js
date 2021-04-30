@@ -35,7 +35,6 @@ function Navbar({loggedIn}) {
 
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('loggedInUser')));
-        console.log('abc');
     }, [loggedIn]);
 
     if(loggedIn){

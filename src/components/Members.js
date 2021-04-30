@@ -22,7 +22,8 @@ function Members({members}) {
                     {members.map((member, i)=>{
                     //onClick is getting the value of the clicked member from MemberCard component
                     if(!member.isAdmin)
-                        return <MemberCard key={'Member'+i} member={member} propsOnClick={(member)=> setClicked(member)}/>
+                        return <MemberCard key={'member'+i} member={member} propsOnClick={(member)=> setClicked(member)}/>
+                    return <div key={'member'+i}></div>;    
                     })}
                 </div>
             </div>
