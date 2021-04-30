@@ -1,0 +1,66 @@
+.card {
+    margin : 1.5rem;
+    background-image: var(--card-background);
+    box-shadow: var(--shadow-light);
+    font-size : 13px;
+    font-family: 'Courier New', Courier, monospace;
+
+    transition: 0.25s;
+    width: 28rem;
+    height: 16rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    color : var(--light-color);
+    .memberName{
+        display : flex;
+        align-items: center;
+        .highlight{
+            font-weight: bold;
+            display : flex;
+            justify-content: flex-end;
+            width : 90%;
+            font-size: 140%;
+        }
+        .advocateIcon {
+            display : flex;
+            justify-content: flex-start;
+            background-image : var(--advocate-icon);
+            background-size: cover;
+            height: 2rem;
+            width : 2rem;
+        }
+    }
+    .cardContents {
+        display : flex;
+        .memberInfo{
+            float: right;
+        }
+        .avatar {
+            display : flex;
+            margin : 2px;
+            justify-content: center;
+            width : 28%;
+            background-image: var(--avatar-placeholder);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .space{
+            width: 72%;
+        }
+    }
+    .pad{
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+    }
+}
+.card:hover {
+    box-shadow: var(--shadow-dark);
+}
+.card:focus {
+    background-image: var(--text-focus-color);
+}
+h2 {
+    display : flex;
+    justify-content: center;
+    padding-top: 2.75rem;
+}

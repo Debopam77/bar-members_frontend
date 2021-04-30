@@ -1,0 +1,20 @@
+.loginRegister {
+    display : flex;
+    flex-direction: column;
+    text-align : center;
+    align-items: center;
+}
+.descriptionInput {
+    display : flex;
+    flex-direction: column;
+    padding : 2rem;
+}
+.description {
+    display: flex;
+    padding : 0.75rem;
+}
+.centerElements {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+}
