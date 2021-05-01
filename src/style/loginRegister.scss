@@ -4,10 +4,15 @@
     text-align : center;
     align-items: center;
 }
-.descriptionInput {
+.descriptionInputLogin {
     display : flex;
     flex-direction: column;
     padding : 2rem;
+}
+.descriptionInput {
+    display : flex;
+    flex-direction: column;
+    padding-top : 1rem;
 }
 .description {
     display: flex;

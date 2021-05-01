@@ -59,10 +59,10 @@ function Login({setLoggedIn}) {
         <div className='loginRegister'>
             <h2>Enter your login details</h2>
             <form className='centerElements' onSubmit={login}>
-                <div className='descriptionInput'><div className='description'>Phone : </div><input onChange={getValue} name='phone'></input></div>
-                <div className='descriptionInput'><div className='description'>Password : </div><input onChange={getValue} name='password' type='password'></input></div>
-                <div className='descriptionInput'><div><a href='/forgotPassword'>Forgot your password?</a></div></div>
-                <div className='descriptionInput'><div><a href='/register'>New user? Register here.</a></div></div>
+                <div className='descriptionInputLogin'><div className='description'>Phone : </div><input onChange={getValue} name='phone'></input></div>
+                <div className='descriptionInputLogin'><div className='description'>Password : </div><input onChange={getValue} name='password' type='password'></input></div>
+                <div className='descriptionInputLogin'><div><a href='/forgotPassword'>Forgot your password?</a></div></div>
+                <div className='descriptionInputLogin'><div><a href='/register'>New user? Register here.</a></div></div>
                 <button>Login</button>
             </form>
         </div>
