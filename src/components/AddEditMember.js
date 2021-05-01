@@ -16,24 +16,29 @@ function AddEditMember({member}) {
         }, {});
 
     //State to store the created or updated user string
-    const [newValue, setNewValue] = useState();
+    const [newValue, setNewValue] = useState(defaultValue);
 
     //onChange triggered function to update 
     const getValue = (event)=> {
         
         //Setting the value of the state using the changed input fields
         setNewValue(()=> {
+
             const elementName = event.target.name;
             const elementValue = event.target.value;
             let result = defaultValue;
 
             if(elementName.includes('.')) {
+
                 const part = elementName.split('.');
-                console.log(result['name']);
-                //result[part[0]].result[part[1]] = elementValue;
+                result[part[0]][part[1]] = elementValue;
+
             }else{
+
                 result[elementName] = elementValue 
+
             }
+
             return result;
         });
     }
