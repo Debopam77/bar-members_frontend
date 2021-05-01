@@ -62,6 +62,18 @@ function AddEditMember({member}) {
                 <div className='descriptionInput'><div className='description'>Last Name</div>
                 <input type="text" name={'name.lastName'} defaultValue={member.name.lastName} onChange={getValue}></input></div>
 
+                <div className='descriptionInput'><div className='description'>Chamber Address</div>
+                <input type="text" name={'address.chamberAddress'} defaultValue={member.address.chamberAddress} onChange={getValue}></input></div>
+
+                <div className='descriptionInput'><div className='description'>Chamber Pincode</div>
+                <input type="text" name={'address.chamberPincode'} defaultValue={member.address.chamberPincode} onChange={getValue}></input></div>
+
+                <div className='descriptionInput'><div className='description'>Residential Address</div>
+                <input type="text" name={'address.residentialAddress'} defaultValue={member.address.residentialAddress} onChange={getValue}></input></div>
+
+                <div className='descriptionInput'><div className='description'>Residential Pincode</div>
+                <input type="text" name={'address.residentialPincode'} defaultValue={member.address.residentialPincode} onChange={getValue}></input></div>
+
                 <div className='descriptionInput'><div className='description'>E-mail</div>
                 <input type="text" name={'email'} defaultValue={member.email} onChange={getValue}></input></div>
 
