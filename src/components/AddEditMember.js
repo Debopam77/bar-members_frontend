@@ -1,4 +1,6 @@
 import React,{useState} from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 
@@ -29,14 +31,11 @@ function AddEditMember({member}) {
             let result = defaultValue;
 
             if(elementName.includes('.')) {
-
                 const part = elementName.split('.');
                 result[part[0]][part[1]] = elementValue;
 
             }else{
-
                 result[elementName] = elementValue 
-
             }
 
             return result;
@@ -73,6 +72,9 @@ function AddEditMember({member}) {
 
                 <div className='descriptionInput'><div className='description'>Residential Pincode</div>
                 <input type="text" name={'address.residentialPincode'} defaultValue={member.address.residentialPincode} onChange={getValue}></input></div>
+
+                <div className='descriptionInput'><div className='description'>Date of Birth</div>
+                <DatePicker name={'dob'} selected={new Date()} onChange={(data) => {console.log(data)}}></DatePicker></div>
 
                 <div className='descriptionInput'><div className='description'>E-mail</div>
                 <input type="text" name={'email'} defaultValue={member.email} onChange={getValue}></input></div>
