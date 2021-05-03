@@ -74,7 +74,7 @@ function AddEditMember({member}) {
                 <input type="text" name={'address.residentialPincode'} defaultValue={member.address.residentialPincode} onChange={getValue}></input></div>
 
                 <div className='descriptionInput'><div className='description'>Date of Birth</div>
-                <DatePicker name={'dob'} selected={new Date()} onChange={(data) => {console.log(data)}}></DatePicker></div>
+                <DatePicker name={'dob'} selected={Date.parse(member.dob)} onChange={(data) => {console.log(data)}}></DatePicker></div>
 
                 <div className='descriptionInput'><div className='description'>E-mail</div>
                 <input type="text" name={'email'} defaultValue={member.email} onChange={getValue}></input></div>
