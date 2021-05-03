@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import {Multiselect} from 'multiselect-react-dropdown';
+import dateFormat from 'dateformat';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 
@@ -25,7 +27,6 @@ function AddEditMember({member}) {
         
         //Setting the value of the state using the changed input fields
         setNewValue(()=> {
-
             const elementName = event.target.name;
             const elementValue = event.target.value;
             let result = defaultValue;
@@ -35,7 +36,7 @@ function AddEditMember({member}) {
                 result[part[0]][part[1]] = elementValue;
 
             }else{
-                result[elementName] = elementValue 
+                result[elementName] = elementValue; 
             }
 
             return result;
@@ -73,8 +74,19 @@ function AddEditMember({member}) {
                 <div className='descriptionInput'><div className='description'>Residential Pincode</div>
                 <input type="text" name={'address.residentialPincode'} defaultValue={member.address.residentialPincode} onChange={getValue}></input></div>
 
+                <div className='descriptionInput'><div className='description'>Chamber open on</div>
+                <Multiselect options={['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']} displayValue='key'/></div>
+
                 <div className='descriptionInput'><div className='description'>Date of Birth</div>
-                <DatePicker name={'dob'} selected={Date.parse(member.dob)} onChange={(data) => {console.log(data)}}></DatePicker></div>
+                <DatePicker name={'dateOfBirth'} selected={Date.parse(newValue.dateOfBirth)} onChange={(data) => {
+                    setNewValue({
+                    ...newValue,
+                    'dateOfBirth' : dateFormat(data, 'mm-dd-yyyy')
+                    });
+                }
+                }></DatePicker></div>
+
+                
 
                 <div className='descriptionInput'><div className='description'>E-mail</div>
                 <input type="text" name={'email'} defaultValue={member.email} onChange={getValue}></input></div>
