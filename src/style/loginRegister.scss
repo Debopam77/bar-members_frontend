@@ -13,6 +13,11 @@
     display : flex;
     flex-direction: column;
     padding-top : 1rem;
+    input {
+        display : flex;
+        justify-content: center;
+        align-self: center;
+    }
 }
 .description {
     display: flex;
@@ -22,4 +27,32 @@
     display : flex;
     flex-direction: column;
     justify-content: center;
+}
+form{
+    background-image : var(--form-background);
+    box-shadow: var(--shadow-light);
+    transition : 0.25s;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+.oneLine {
+    display : flex;
+    padding-left : 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+.checkBox {
+    box-shadow : none;
+    width : 10%;
+    align-content: inherit;
+    border: none;
+    padding: 1.5rem;
+}
+.checkBox:hover {
+    box-shadow : none;
+}
+.checkBox:focus {
+    box-shadow : none;
 }
