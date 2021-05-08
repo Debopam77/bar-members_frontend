@@ -59,7 +59,7 @@ function Router() {
                 <AboutUs/>
             </Route>
             <Route path='/register'>
-                <RegisterUser/>
+                <RegisterUser setLoggedIn={setLoggedIn}/>
             </Route>
             <Route path='/searchMembers'>
                 <SearchMembers members={members}/>

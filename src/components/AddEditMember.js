@@ -5,6 +5,8 @@ import dateFormat from 'dateformat';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import {arrToObj, keyToValueConvert} from '../utilFunctions/arrayObjectConversions';
+import {Redirect} from 'react-router-dom';
+import axios from 'axios';
 
 function AddEditMember({member}) {
 
@@ -22,7 +24,8 @@ function AddEditMember({member}) {
     //State to store the created or updated user string
     const [newValue, setNewValue] = useState(defaultValue);
 
-    
+    //State to figure out when to redirect page back to user detail page after edit or create
+    const[redirectToDetails, setRedirectToDetails] = useState(false);
 
     //Used to map the day array to particular day strings
     const daysInWeek = [
@@ -81,7 +84,7 @@ function AddEditMember({member}) {
         //Setting the value of the state using the changed input fields
         setNewValue(()=> {
             
-            let result = defaultValue;
+            let result = newValue;
 
             if(elementName.includes('.')) {
                 //Handle object based attributes
@@ -95,9 +98,41 @@ function AddEditMember({member}) {
         });
     }
 
-    const submitData = (event)=> {
+    //Submit button is clicked
+    const submitData = async (event)=> {
         event.preventDefault();
         console.log(newValue);
+        const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
+        const url = 'http://'+(process.env.REACT_APP_URL)+'/members/';
+        const axiosConfig = {
+            headers : {
+                Authorization : 'Bearer '+userToken
+            }
+        };
+
+        //Call the edit user api
+        try {
+            const res = await axios.patch(url, newValue, axiosConfig);
+            console.log(res.data);
+            const localStorageToStore = {
+                member : res.data,
+                token : userToken
+            }
+            //Set the new updated User data in the local storage
+            localStorage.setItem('loggedInUser', JSON.stringify(localStorageToStore));
+            //Tell the component to redirect back to the details page
+            setRedirectToDetails(true);
+        }catch(e){
+            alert(e);
+        }
+    }
+
+    if(redirectToDetails) {
+        //Redirect back to the details page
+        return (
+        <>
+            <Redirect to='/' />
+        </>);
     }
 
     return (

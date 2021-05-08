@@ -3,7 +3,7 @@
         let arr = toConvert;
         arr.forEach((value, key)=> {
             if( value )
-                 arr[key] = { 'value' : value }
+                 arr[key] = { 'value' : (''+value).trim() }
             else 
                 arr[key] = {}
         });
@@ -16,7 +16,7 @@
     const keyToValueConvert = (input) => {
         let arr = [];
         input.forEach((value, key) => {
-            if( value!= false )
+            if( value!== false )
                 arr.push(key);
         });
 

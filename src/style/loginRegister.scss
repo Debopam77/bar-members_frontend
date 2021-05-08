@@ -21,7 +21,6 @@
 }
 .description {
     display: flex;
-    padding : 0.75rem;
 }
 .centerElements {
     display : flex;
@@ -55,4 +54,9 @@ form{
 }
 .checkBox:focus {
     box-shadow : none;
+}
+
+.passwordMatches{
+    border-style: solid;
+    color: rgb(255, 98, 80);
 }
