@@ -23,6 +23,11 @@ function Navbar({loggedIn}) {
             class: 'nav-links'
         },
         {
+            title : 'Register',
+            url: '/register',
+            class: 'nav-links'
+        },
+        {
             title : 'About us',
             url: '/aboutUs',
             class: 'nav-links'
@@ -33,6 +38,7 @@ function Navbar({loggedIn}) {
         }
     ];
 
+    //Load user details in state at Navbar load
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('loggedInUser')));
     }, [loggedIn]);
@@ -44,7 +50,7 @@ function Navbar({loggedIn}) {
             url: '/members/logout',
             class: 'nav-links'
         }
-        navBarItems.splice(2, 0, {
+        navBarItems.splice(3, 1, {
             title : 'Me',
             url: '/members/detail',
             class: 'nav-links'

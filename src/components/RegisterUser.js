@@ -36,14 +36,12 @@ function RegisterUser({setLoggedIn}) {
             });
 
             const response = await axios.post(url, newUser);
-            console.log(response.data);
             localStorage.setItem('loggedInUser', JSON.stringify(response.data));
 
             setLoggedIn(true);
             //Prep to redirect to home
             setRedirectToHome(true);
         }catch(e){
-            console.log(e);
             alert(e)
         }
     }

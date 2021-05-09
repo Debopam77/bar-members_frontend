@@ -3,20 +3,29 @@ import AddEditMember from '../components/AddEditMember';
 import '../style/MemberCardDetails.scss'
 import '../style/index.scss';
 
-function MemberCardDetails({member, loggedIn}) {
+function MemberCardDetails({member, loggedIn, isAdmin}) {
+
+    // To figure out if the edit button was clicked
     const [clicked, setClicked] = useState(false);
+    //If edit button should be visible or not
     let editVisible = false;
-    if(!member && loggedIn){
+
+    //If we get a member prop and the user is an admin
+    if(member && isAdmin){
+        editVisible = true;
+    //If the user is editing their own data    
+    }else if(!member && loggedIn){
         member = JSON.parse(localStorage.getItem('loggedInUser')).member;
         editVisible = true;
-    }
-    else if(!member && !loggedIn) {
+    //If someone accesses the details page without logging in    
+    }else if(!member && !loggedIn) {
         alert('User not logged in');
         return (<div>Not logged In</div>);
     }
 
     const editButton = (<button onClick={()=>{setClicked(true)}}><div className='editIcon'></div>Edit</button>);
 
+    //Once edit is clicked call the AddEditMember module
     if(clicked) {
         return (<AddEditMember member={member}></AddEditMember>);
     }

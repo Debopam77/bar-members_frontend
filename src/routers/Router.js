@@ -12,7 +12,10 @@ import Logout from '../components/Logout';
 import MemberCardDetails from '../components/MemberCardDetails';
 
 function Router() {
+    //Store the member data
     const [members, setMembersValue] = useState([]);
+
+    //To check if app has a logged in user or not
     const [loggedIn, setLoggedIn] = useState(()=> {
         return (JSON.parse(localStorage.getItem('loggedInUser'))) ? true : false;
     });
@@ -23,17 +26,17 @@ function Router() {
         //Get the environment details from the config folder
         const environment = process.env.REACT_APP_URL;
 
-        //Api getting called
+        //Declared inside because if declared outside REACT gives warning
         const getMembers = async ()=> {
             try {
                 const url = 'http://'+environment+'/members'
                 const member = await Axios.get(url);
                 setMembersValue(member.data);
             }catch(e){
-                console.log('Some error occured');
+                alert('Some error occured');
             }
         }
-
+        //Run the get members API
         getMembers();
     },[]);
 
@@ -53,7 +56,7 @@ function Router() {
             <Route path='/members'>
                 {//Sending the members state array as props
                 }
-                <Members members={members}/>
+                <Members members={members} loggedIn={loggedIn}/>
             </Route>
             <Route path='/aboutUs'>
                 <AboutUs/>

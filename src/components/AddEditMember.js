@@ -101,8 +101,10 @@ function AddEditMember({member}) {
     //Submit button is clicked
     const submitData = async (event)=> {
         event.preventDefault();
-        console.log(newValue);
+        
+        const isAdmin = JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin;
         const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
+        let payload = newValue;
         const url = 'http://'+(process.env.REACT_APP_URL)+'/members/';
         const axiosConfig = {
             headers : {
@@ -112,18 +114,28 @@ function AddEditMember({member}) {
 
         //Call the edit user api
         try {
-            const res = await axios.patch(url, newValue, axiosConfig);
-            console.log(res.data);
+            
+            //If the edit request is made from the admin account, append phone number to payload for identification of the member being edited
+            if(isAdmin) {
+                payload = {
+                    ...payload,
+                    'phone' :member.phone
+                }
+            }
+
+            const res = await axios.patch(url, payload, axiosConfig);
             const localStorageToStore = {
                 member : res.data,
                 token : userToken
             }
-            //Set the new updated User data in the local storage
-            localStorage.setItem('loggedInUser', JSON.stringify(localStorageToStore));
+            if(!isAdmin)
+                //Set the new updated User data in the local storage
+                localStorage.setItem('loggedInUser', JSON.stringify(localStorageToStore));
+                
             //Tell the component to redirect back to the details page
             setRedirectToDetails(true);
         }catch(e){
-            alert(e);
+            alert(e.message);
         }
     }
 
