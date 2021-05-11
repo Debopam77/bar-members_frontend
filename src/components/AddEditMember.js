@@ -6,6 +6,8 @@ import '../style/index.scss';
 import '../style/loginRegister.scss';
 import {arrToObj, keyToValueConvert} from '../utilFunctions/arrayObjectConversions';
 import {Redirect} from 'react-router-dom';
+import blankUserImage from '../resources/img/user.png'
+import {convertImgToBuffer} from '../utilFunctions/avatarImageConversions';
 import axios from 'axios';
 
 function AddEditMember({member}) {
@@ -23,6 +25,25 @@ function AddEditMember({member}) {
 
     //State to store the created or updated user string
     const [newValue, setNewValue] = useState(defaultValue);
+
+    //Avatar picture file
+    const [avatarPic, setAvatarPic] = useState(()=> {
+        let bufferImage;
+        let url;
+        //If the member object has a avatar field
+        if(member.avatar){
+            console.log('here');
+            bufferImage = member.avatar;
+            //convert buffer image to a blob
+            const imageConverted = (new Blob([bufferImage], { type: 'image/png' }));
+            //get url from the blob
+            url = URL.createObjectURL(imageConverted);
+        }
+        return {
+            bufferImage : bufferImage,
+            url : url
+        }
+    });
 
     //State to figure out when to redirect page back to user detail page after edit or create
     const[redirectToDetails, setRedirectToDetails] = useState(false);
@@ -101,7 +122,6 @@ function AddEditMember({member}) {
     //Submit button is clicked
     const submitData = async (event)=> {
         event.preventDefault();
-        
         const isAdmin = JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin;
         const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
         let payload = newValue;
@@ -122,6 +142,12 @@ function AddEditMember({member}) {
                     'phone' :member.phone
                 }
             }
+            if(avatarPic.bufferImage) {
+                payload = {
+                    ...payload,
+                    avatar : avatarPic.bufferImage
+                }
+            }
 
             const res = await axios.patch(url, payload, axiosConfig);
             const localStorageToStore = {
@@ -139,6 +165,31 @@ function AddEditMember({member}) {
         }
     }
 
+    const avatarHandler = async (event)=> {
+        const eventName = event.target.attributes.name.value;
+
+        //Handle uplaod part
+        if(eventName === 'avatar.upload'){
+            setAvatarPic();
+            
+            const file = event.target.files[0];
+            try {
+                const bufferImage = await convertImgToBuffer(file);
+
+                setAvatarPic({
+                    bufferImage : bufferImage,
+                    url : URL.createObjectURL(file)
+                });
+            }catch(e) {
+                setAvatarPic({});
+                alert(e);
+            }
+        }//Handle removal part
+        else if(eventName === 'avatar.remove') {
+            setAvatarPic({});
+        }
+    }
+
     if(redirectToDetails) {
         //Redirect back to the details page
         return (
@@ -149,7 +200,21 @@ function AddEditMember({member}) {
 
     return (
         <div className='loginRegister'>
+
+            <h2>Add or edit details</h2>
+
             <form onSubmit={submitData}>
+
+                <div className='description'>Profile picture</div>
+                <img src={(avatarPic)?  avatarPic.url : blankUserImage} className='avatar' name='avatar' alt='User'></img>
+                <div>
+                    <input type='file' name='avatar.upload' className='chooseFileInput' onChange={avatarHandler}/>
+                </div>
+                
+                <div name='avatar.remove' className='noSubmitButton' onClick={avatarHandler}>Remove</div>
+
+                <div className='descriptionInput'><div className='description'>Phone Number</div>
+                <div className='highlight'>{member.phone}</div></div>
                 
                 <div className='descriptionInput'><div className='description'>First Name</div>
                 <input type="text" name={'name.firstName'} defaultValue={member.name.firstName} onChange={getValue}></input></div>

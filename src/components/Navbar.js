@@ -18,13 +18,13 @@ function Navbar({loggedIn}) {
             class: 'nav-links'
         },
         {
-            title : 'Login',
-            url: '/members/login',
+            title : 'Register',
+            url: '/register',
             class: 'nav-links'
         },
         {
-            title : 'Register',
-            url: '/register',
+            title : 'Login',
+            url: '/members/login',
             class: 'nav-links'
         },
         {
@@ -45,12 +45,12 @@ function Navbar({loggedIn}) {
 
     if(loggedIn){
         
-        navBarItems[2] = {
+        navBarItems[3] = {
             title : 'Logout',
             url: '/members/logout',
             class: 'nav-links'
         }
-        navBarItems.splice(3, 1, {
+        navBarItems.splice(2, 1, {
             title : 'Me',
             url: '/members/detail',
             class: 'nav-links'

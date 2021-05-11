@@ -60,3 +60,36 @@ form{
     border-style: solid;
     color: rgb(255, 98, 80);
 }
+
+.avatar {
+    width : 150px;
+    border-radius: 20px;
+    margin : 2rem;
+}
+
+.noSubmitButton {
+    display : inline-block;
+    padding : 0.5rem 0.75rem;
+    background: var(--button-color);
+    color: var(--light-color);
+    box-shadow: var(--shadow-light);
+    font-size : 1.25rem;
+    border: none;
+    border-radius: 18px;
+    margin : 1rem;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.noSubmitButton:hover{
+    box-shadow: var(--shadow-dark);
+    background: var(--button-select);
+}
+.noSubmitButton:focus{
+    background: var(--nav-text-dark);
+}
+.chooseFileInput {
+    all : unset;
+}
+.chooseFileInput:hover {
+    all : unset;
+}

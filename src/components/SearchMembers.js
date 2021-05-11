@@ -33,13 +33,11 @@ function SearchMembers({members}) {
                 <div className='searchSuggestions'>
                     {
                         members.filter((member)=> {
-                            if(searchValue === null)
-                                return '';
-                            else if(member.name.firstName.toLowerCase().includes(searchValue) || 
+                            if(member.name.firstName.toLowerCase().includes(searchValue) || 
                                     member.name.lastName.toLowerCase().includes(searchValue) ||
                                     member.phone.includes(searchValue))
-                                return member;
-                            return <></>;         
+                                return true;
+                            return false;             
                         }).map((member, index)=>{
                             return (
                                 <div onClick={()=>{setClicked(member)}} key={'suggestion'+index} className='suggestion'>{member.name.firstName} {member.name.lastName} - {member.phone}</div>
