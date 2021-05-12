@@ -43,7 +43,7 @@ function Logout({setLoggedIn}) {
     }
 
     //Show logout options    
-    return (<div className='logout'>
+    return (<div className='loginRegister'>
         <h2>Want to logout?</h2>
         <button onClick={logoutActions} id='yes'>Yes</button>
         <button onClick={logoutActions} id='no'>No</button>

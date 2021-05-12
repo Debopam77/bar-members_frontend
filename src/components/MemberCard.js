@@ -17,7 +17,7 @@ function MemberCard({member, propsOnClick}) {
                     <div className='pad'>Phone : <span className='memberInfo'>{member.phone}</span></div>
                     <div className='pad'>Email : <span className='memberInfo'>{member.email}</span></div>
                 </div>
-                <img src={(member.avatar && member.avatar.data.length>0) ? getFileURL(convertBufferToImg(member.avatar.data)) : blankUserImage} className='avatar'></img>
+                <img src={(member.avatar && member.avatar.data.length>0) ? getFileURL(convertBufferToImg(member.avatar.data)) : blankUserImage} className='avatar' alt='avatar'></img>
             </div>
             
         </div>)

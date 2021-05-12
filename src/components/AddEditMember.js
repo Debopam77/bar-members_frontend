@@ -244,6 +244,9 @@ function AddEditMember({member}) {
                 <div className='descriptionInput'><div className='description'>E-mail</div>
                 <input type="text" name={'email'} defaultValue={member.email} onChange={getValue}></input></div>
 
+                <div className='descriptionInput'><div className='description'>BAR Registration number</div>
+                <input type="text" name={'registration'} defaultValue={''} onChange={getValue}></input></div>
+
                 <div className='descriptionInput'><div className='description'>Chamber Address</div>
                 <input type="text" name={'address.chamberAddress'} defaultValue={member.address.chamberAddress} onChange={getValue}></input></div>
 

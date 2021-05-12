@@ -29,12 +29,6 @@ function RegisterUser({setLoggedIn}) {
 
         //Trigger api to create new user
         try{
-            //Setting up a placeholder unique registration
-            setNewUser({
-                ...newUser,
-                'registration' : 'placeholder'+newUser['phone']
-            });
-
             const response = await axios.post(url, newUser);
             localStorage.setItem('loggedInUser', JSON.stringify(response.data));
 
@@ -65,9 +59,13 @@ function RegisterUser({setLoggedIn}) {
                 const part = elementName.split('.');
                 result[part[0]][part[1]] = elementValue;
 
-            }else
+            }else {
+                //For creating a temporary registration number
+                if(elementName === 'phone')
+                    result['registration'] = 'placeholder'+elementValue;
                 //Handle normal attributes
                 result[elementName] = elementValue; 
+            }
             return result;
         });
     }
