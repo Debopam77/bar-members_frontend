@@ -1,8 +1,11 @@
 import React from 'react';
 import '../style/index.scss';
 import './../style/MemberCard.scss';
+import {convertBufferToImg,getFileURL} from '../utilFunctions/avatarImageConversions'
+import blankUserImage from '../resources/img/user.png'
 
 function MemberCard({member, propsOnClick}) {
+
     const output = (
         (<div className='card' onClick={()=>{propsOnClick(member)}}>
             <div className='memberName'><div className='advocateIcon'></div><span className='highlight'>{member.name.firstName} {member.name.middleName} {member.name.lastName}</span></div>
@@ -14,7 +17,7 @@ function MemberCard({member, propsOnClick}) {
                     <div className='pad'>Phone : <span className='memberInfo'>{member.phone}</span></div>
                     <div className='pad'>Email : <span className='memberInfo'>{member.email}</span></div>
                 </div>
-                <div className='avatar'></div>
+                <img src={(member.avatar && member.avatar.data.length>0) ? getFileURL(convertBufferToImg(member.avatar.data)) : blankUserImage} className='avatar'></img>
             </div>
             
         </div>)
