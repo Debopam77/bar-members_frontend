@@ -6,7 +6,7 @@ import '../style/index.scss';
 function MemberCardDetails({member, loggedIn, isAdmin}) {
 
     // To figure out if the edit button was clicked
-    const [clicked, setClicked] = useState(false);
+    const [clicked, setClicked] = useState([false,false]);
     //If edit button should be visible or not
     let editVisible = false;
 
@@ -23,11 +23,15 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
         return (<div>Not logged In</div>);
     }
 
-    const editButton = (<button onClick={()=>{setClicked(true)}}><div className='editIcon'></div>Edit</button>);
+    const editButton = (<button onClick={()=>{setClicked([true, false])}}><div className='editIcon'></div>Edit</button>);
+    const deleteButton = (<button onClick={()=>{setClicked([false, true])}} ><div className='deleteIcon'></div></button>)
 
     //Once edit is clicked call the AddEditMember module
-    if(clicked) {
-        return (<AddEditMember member={member}></AddEditMember>);
+    if(clicked[0] || clicked[1]) {
+        if(clicked[0])
+            return (<AddEditMember member={member}></AddEditMember>);
+        else
+            return(<div>Delete</div>);   
     }
 
     return (

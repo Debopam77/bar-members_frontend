@@ -193,6 +193,7 @@ function AddEditMember({member}) {
             //Tell the component to redirect back to the details page
             setRedirectToDetails(true);
         }catch(e){
+            console.log(e);
             alert(e.message);
         }
     }
