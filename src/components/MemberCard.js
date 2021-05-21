@@ -1,15 +1,20 @@
 import React from 'react';
 import '../style/index.scss';
 import './../style/MemberCard.scss';
-import {convertBufferToImg,getFileURL} from '../utilFunctions/avatarImageConversions'
-import blankUserImage from '../resources/img/user.png'
+import {convertBufferToImg,getFileURL} from '../utilFunctions/avatarImageConversions';
+import blankUserImage from '../resources/img/user.png';
+import {arrayToString} from '../utilFunctions/displayArrays'
 
 function MemberCard({member, propsOnClick}) {
-
+    let qualificationElement;
+    if(member.qualification[0]) {
+        qualificationElement = arrayToString(member.qualification, 3);
+        qualificationElement = <div className='qualifications'>{qualificationElement}</div>
+    }
     const output = (
         (<div className='card' onClick={()=>{propsOnClick(member)}}>
-            <div className='memberName'><div className='advocateIcon'/><div className='associationHeading'>Displaced Lawyers' Bar Association</div><div className='associationAddress'>Barrackpore Court, WB</div></div>
-            <div className='nameDisplay'><div className='advocate'>ADVOCATE</div><div className='highlight'>{member.name.firstName} {member.name.middleName} {member.name.lastName}</div></div>
+            <div className='memberName'><div className='advocateIcon'/><div className='associationChunk'><div className='associationHeading'>Displaced Lawyers' Bar Association</div><div className='associationAddress'>Barrackpore Court, WB, Kolkata - 700120</div></div></div>
+            <div className='nameDisplay'><div className='highlight'>{member.name.firstName} {member.name.middleName} {member.name.lastName} {(qualificationElement)? qualificationElement : ''}</div><div className='advocate'>ADVOCATE</div></div>
             <div className='cardContents'>
                 <div className='space'>
                     <div className='pad'>Regi#<span className='memberInfo'>{member.registration}</span></div>

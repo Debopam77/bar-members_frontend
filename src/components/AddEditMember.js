@@ -13,7 +13,7 @@ import axios from 'axios';
 function AddEditMember({member}) {
 
     //Values that cannot be changed
-    const excludedAttributes = ['phone', 'registration', 'updatedAt', 'age', 'isAdmin', 'chamberOpenDays', 'courtOfPractice', 'expertise', 'certificates'];
+    const excludedAttributes = ['phone', 'registration', 'updatedAt', 'age', 'isAdmin', 'chamberOpenDays', 'courtOfPractice', 'expertise', 'certificates', 'qualification'];
     let defaultValue = Object.keys(member)
         .filter((key) => !excludedAttributes.includes(key))
         .reduce((obj, key) => {
@@ -128,7 +128,7 @@ function AddEditMember({member}) {
 
             elementValue = arrToObj(keyToValueConvert(chamberOpenDays));
 
-        }else if(elementName === 'certificates' || elementName === 'expertise' || elementName === 'courtOfPractice') {
+        }else if(elementName === 'certificates' || elementName === 'expertise' || elementName === 'courtOfPractice' || elementName === 'qualification') {
             //Handle comma separated arrays
             arr = (event.target.value).split(',');
             elementValue = arrToObj(arr);
@@ -269,6 +269,9 @@ function AddEditMember({member}) {
 
                 <div className='descriptionInput'><div className='description'>Certificates</div>
                 <input type="text" name={'certificates'} defaultValue={member.certificates} onChange={getValue}></input></div>
+
+                <div className='descriptionInput'><div className='description'>Qualification</div>
+                <input type="text" name={'qualification'} defaultValue={member.qualification} onChange={getValue}></input></div>
                 
                 <div className='descriptionInput'><div className='description'>Expertise</div>
                 <input type="text" name={'expertise'} defaultValue={member.expertise} onChange={getValue}></input></div>

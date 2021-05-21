@@ -10,6 +10,7 @@ import RegisterUser from '../components/RegisterUser';
 import SearchMembers from '../components/SearchMembers';
 import Logout from '../components/Logout';
 import MemberCardDetails from '../components/MemberCardDetails';
+import DeleteMember from '../components/DeleteMember';
 
 function Router() {
     //Store the member data
@@ -49,6 +50,9 @@ function Router() {
             </Route>
             <Route path='/members/logout'>
                 <Logout setLoggedIn={setLoggedIn}/>
+            </Route>
+            <Route path='/members/delete'>
+                <DeleteMember setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
             </Route>
             <Route path='/members/detail'>
                 <MemberCardDetails loggedIn={loggedIn}/>

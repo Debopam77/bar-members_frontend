@@ -4,24 +4,46 @@
     justify-content: center;
     align-items: center;
 }
+.detailedCard {
+    display: flex;
+    flex-direction: column;
+    background-image: var(--form-background2);
+    margin-top: 2rem;
+    padding: 4rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-light);
+    transition: 0.25s;
 
-.pad{
-    padding : 1rem;
+    .pad{
+        padding : 1rem;
+    }
+    .avatar {
+        align-self: center;
+    }
 }
+.detailedCard:hover {
+    box-shadow: var(--shadow-dark);
+}
+
 button {
     display : flex;
     align-items: center;
 }
-
-.editIcon {
-    background-image: var(--edit-icon);
-    background-size: cover;
-    padding : 0.75rem;
-    margin : 0.5rem;
+.pattern{
+    background-image: var(--navbar-background);
 }
-.deleteIcon {
-    background-image: var(--delete-icon);
-    background-size: cover;
-    padding : 0.75rem;
-    margin : 0.5rem;
+.buttonDock {
+    display : flex;
+    .editIcon {
+        background-image: var(--edit-icon);
+        background-size: cover;
+        padding : 0.75rem;
+        margin : 0.5rem;
+    }
+    .deleteIcon {
+        background-image: var(--delete-icon);
+        background-size: cover;
+        padding : 0.75rem;
+        margin : 0.5rem;
+    }
 }

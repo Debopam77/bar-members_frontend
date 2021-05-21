@@ -27,4 +27,22 @@ const getFileURL = (file)=> {
     return url
 }
 
-export {convertImgToBuffer, convertBufferToImg, getFileURL};
+const getAvatar = (member)=> {
+    let bufferImage;
+    let url;
+    if(!member)
+        return undefined;
+    //If the member object has a avatar field
+    if(member.avatar && member.avatar.data.length > 0){
+        //Getting the array from the member.avatar object
+        bufferImage = member.avatar.data;
+        //get url from the blob
+        url = URL.createObjectURL(convertBufferToImg(bufferImage));
+    }
+    return {
+        bufferImage : bufferImage,
+        url : url
+    }
+}
+
+export {convertImgToBuffer, convertBufferToImg, getFileURL, getAvatar};
