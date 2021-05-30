@@ -14,11 +14,13 @@ function SearchMembers({members}) {
             setSearchValue(event.target.value);
         }    
 
+        const isAdmin = (JSON.parse(localStorage.getItem('loggedInUser')))? JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin : false;
+
         //If a member div is clicked, return member details
         if(clicked){
             return (
                 <div>
-                    <div className='member'><MemberCardDetails member={clicked}></MemberCardDetails></div>
+                    <div className='member'><MemberCardDetails member={clicked} isAdmin={isAdmin}></MemberCardDetails></div>
                 </div>  
             );
         }
@@ -33,9 +35,9 @@ function SearchMembers({members}) {
                 <div className='searchSuggestions'>
                     {
                         members.filter((member)=> {
-                            if(member.name.firstName.toLowerCase().includes(searchValue) || 
+                            if((isAdmin || member.isApproved) && (member.name.firstName.toLowerCase().includes(searchValue) || 
                                     member.name.lastName.toLowerCase().includes(searchValue) ||
-                                    member.phone.includes(searchValue))
+                                    member.phone.includes(searchValue)))
                                 return true;
                             return false;             
                         }).map((member, index)=>{

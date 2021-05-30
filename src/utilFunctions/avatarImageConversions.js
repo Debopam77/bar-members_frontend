@@ -1,14 +1,14 @@
 
 const convertImgToBuffer = async (file)=> {
     
-    if(parseInt(file.size) < 400000) {
+    if(parseInt(file.size) < 250000) {
         //Convert Image file to a arrayBuffer
         const arrayBufferImage = await file.arrayBuffer();
         const bufferImage = Buffer.from(arrayBufferImage);
         return bufferImage;
     }
 
-    throw new Error('File size exceeded, file should be less than 400KB');
+    throw new Error('File size exceeded, file should be less than 250KB');
 }
 
 const convertBufferToImg = (bufferArray) => {

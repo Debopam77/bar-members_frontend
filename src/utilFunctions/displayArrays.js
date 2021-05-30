@@ -12,4 +12,15 @@ const arrayToString = (array, limit) => {
     return result;
 }
 
-export {arrayToString};
+const arrayToDayString = (array) => {
+    let result = '';
+    const dayValue = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
+    array.forEach((element) => {
+        result = result + ' ' + dayValue[parseInt(element) - 1];
+    });
+
+    return result
+}
+
+export {arrayToString, arrayToDayString};

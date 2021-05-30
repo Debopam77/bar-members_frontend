@@ -59,10 +59,13 @@
             height : 120px;
         }
         .space{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             width : 90%;
             .pad{
                 display : flex;
-                padding: 0.15rem;
+                padding: 0.025rem;
                 text-align: left;
                 align-items: center;
                 .memberInfo{
@@ -110,4 +113,8 @@ h2 {
     display : flex;
     justify-content: center;
     padding-top: 2.75rem;
+}
+
+.not-approved {
+    background-image: var(--card-not-approved);
 }

@@ -8,6 +8,10 @@ function Navbar({loggedIn}) {
     //Array of the navbar links
     let navBarItems = [
         {
+            url: '/searchMembers',
+            class: 'searchIcon',
+        },
+        {
             title : 'Home',
             url: '/home',
             class: 'nav-links'
@@ -31,10 +35,6 @@ function Navbar({loggedIn}) {
             title : 'About us',
             url: '/aboutUs',
             class: 'nav-links'
-        },
-        {
-            url: '/searchMembers',
-            class: 'searchIcon',
         }
     ];
 
@@ -45,12 +45,12 @@ function Navbar({loggedIn}) {
 
     if(loggedIn){
         
-        navBarItems[3] = {
+        navBarItems[4] = {
             title : 'Logout',
             url: '/members/logout',
             class: 'nav-links'
         }
-        navBarItems.splice(2, 1, {
+        navBarItems.splice(3, 1, {
             title : 'Me',
             url: '/members/detail',
             class: 'nav-links'

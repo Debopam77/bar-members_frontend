@@ -1,27 +1,94 @@
-.detailedCardPage{
+.dp-detailedCardPage{
+    width: 100%;
     display : flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.detailedCard {
+.dp-detailedCard {
+    min-width: 20rem;
+    max-width : 35rem;
     display: flex;
     flex-direction: column;
     background-image: var(--form-background2);
     margin-top: 2rem;
-    padding: 4rem;
+    padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow-light);
     transition: 0.25s;
-
-    .pad{
-        padding : 1rem;
+    .dp-memberName {
+        padding : 2rem;
+        padding-top : 0rem;
+        font-size: 120%;
+        .dp-highlight{
+            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 120%;
+            font-weight: bold;
+        }
     }
-    .avatar {
+
+    .dp-space {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width : 90%;
+        .dp-pattern{
+            background-image: var(--navbar-background);
+            align-items: center;
+            padding : 1rem;
+            .dp-pad{
+            
+                padding : 0.75rem;
+                
+                .dp-memberInfo {
+                    display: flex;
+                    justify-content: right;
+                    font-size: 120%;
+                    padding: 1rem;
+                    margin-top: 0.5rem;
+                    font-weight: bold;
+                    background-color: var(--card-info);
+                    box-shadow: var(--shadow-very-light);
+                    border-radius: 1rem;
+                    color : linen;
+                }
+            }
+        }
+    }
+    
+    .dp-buttonDock {
+        display : flex;
+        width : 100%;
+        justify-content: center;
+        align-content: center;
+        .dp-editIcon {
+            background-image: var(--edit-icon);
+            background-size: cover;
+            padding : 0.75rem;
+            margin : 0.5rem;
+            margin-top: 0.25rem;
+            align-content: unset;
+        }
+        .dp-deleteIcon {
+            background-image: var(--delete-icon);
+            background-size: cover;
+            padding : 0.75rem;
+            margin : 0.5rem;
+        }
+    }
+
+    .dp-avatar {
+        height: 170px;
+        width : 170px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: var(--shadow-very-light);
+        
         align-self: center;
     }
+
 }
-.detailedCard:hover {
+.dp-detailedCard:hover {
     box-shadow: var(--shadow-dark);
 }
 
@@ -29,21 +96,8 @@ button {
     display : flex;
     align-items: center;
 }
-.pattern{
-    background-image: var(--navbar-background);
+.backgroundUnset {
+    background-image: var(--card-not-approved);
 }
-.buttonDock {
-    display : flex;
-    .editIcon {
-        background-image: var(--edit-icon);
-        background-size: cover;
-        padding : 0.75rem;
-        margin : 0.5rem;
-    }
-    .deleteIcon {
-        background-image: var(--delete-icon);
-        background-size: cover;
-        padding : 0.75rem;
-        margin : 0.5rem;
-    }
-}
+
+
