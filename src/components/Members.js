@@ -10,6 +10,7 @@ function Members({members}) {
     const [clicked, setClicked] = useState();
     //is Logged in user an Admin
     const isAdmin = (JSON.parse(localStorage.getItem('loggedInUser')))? JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin : false;
+    const approvalColoursElement = (isAdmin)? (<div className='center'><div>Approved <span className='approvedColour'></span></div><div>Not Approved <span className='notApprovedColour'></span></div></div>) : undefined;
 
     const renderOutput = ()=> {
         //If a particular card is clicked
@@ -31,6 +32,7 @@ function Members({members}) {
                     return <div key={'member'+i}></div>;    
                     })}
                 </div>
+                {approvalColoursElement}
             </>
         );
     }

@@ -10,9 +10,10 @@ import axios from 'axios';
 
 function MemberCardDetails({member, loggedIn, isAdmin}) {
 
-    let isApproved = member.isApproved;
+    
     // To figure out if the edit button was clicked
     const [clicked, setClicked] = useState([ false, false, false]);
+    const [isApproved, setIsApproved] = useState(()=> (member && member.isAdmin) ? true : ((member) ? member.isApproved : true));
 
     useEffect(()=> {}, [isApproved]);
 
@@ -70,20 +71,19 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
         };
         const payload = {
             phone : member.phone,
-            isApproved : member.isApproved
+            isApproved : !isApproved
         };
 
         try {
             if(isAdmin){
+                setClicked([false, false, false]);
                 //Call the edit api and pass the edit request
                 const res = await axios.patch(url, payload, axiosConfig);
                 if(res) {
-                    //Fix the non changing values here
-                    isApproved = !isApproved;
-                    member = res.data;
-                    console.log(res.data.isApproved +'   '+ member.isApproved + '  ' +isApproved);
-                    alert(member.name.firstName + ' is '+ (payload.isApproved) ? 'Approved' : 'Dis-approved');
-                    setClicked([false, false, false]);
+                    //Set the isApproved state to opposite of what it was before
+                    setIsApproved(!isApproved);
+                    //Provide an alert to indicate that it was completed successfully
+                    alert(member.name.firstName + ' is '+ ((payload.isApproved) ? 'approved' : 'dis-approved'));
                 }
             }else
                 throw new Error('Must be an admin to approve');

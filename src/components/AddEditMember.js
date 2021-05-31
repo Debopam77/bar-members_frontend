@@ -78,7 +78,7 @@ function AddEditMember({member}) {
         if(avatarPic.url)
             return <div name='avatar.remove' className='noSubmitButton' onClick={avatarHandler}>Remove</div>
         else
-            return <div className='descriptionInputLogin'>Image size should be less than 400KB</div>    
+            return <div className='descriptionInputLogin'>Image size should be less than 150KB</div>    
     }
 
     const avatarHandler = async (event)=> {

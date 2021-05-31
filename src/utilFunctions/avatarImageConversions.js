@@ -1,14 +1,21 @@
 
 const convertImgToBuffer = async (file)=> {
     
-    if(parseInt(file.size) < 250000) {
-        //Convert Image file to a arrayBuffer
-        const arrayBufferImage = await file.arrayBuffer();
-        const bufferImage = Buffer.from(arrayBufferImage);
-        return bufferImage;
+    if(parseInt(file.size) < 150000) {
+        const imgFileTypes = ['.jpeg', '.jfif', '.png', '.jpg'];
+        imgFileTypes.forEach((element) => {
+            if(file.name.toLowerCase().includes(element))
+                imgFileTypes.push('Is an Image');
+        });
+        if(imgFileTypes[imgFileTypes.length-1] === 'Is an Image'){
+            const arrayBufferImage = await file.arrayBuffer();
+            const bufferImage = Buffer.from(arrayBufferImage);
+            return bufferImage;
+        }
+        throw new Error('Not an Image file');
     }
 
-    throw new Error('File size exceeded, file should be less than 250KB');
+    throw new Error('File size exceeded, file should be less than 150KB');
 }
 
 const convertBufferToImg = (bufferArray) => {

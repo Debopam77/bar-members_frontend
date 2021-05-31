@@ -68,3 +68,25 @@ input:hover{
 input:focus {
     box-shadow: var(--shadow-dark);
 }
+.center {
+    display : flex;
+    justify-content: center;
+    padding : 1rem;
+    .approvedColour {
+        margin : 1rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top : 0.25rem;
+        padding-bottom : 0.25rem;
+        background-image: var(--card-background);
+        border-radius: 50%;
+    }
+    .notApprovedColour {
+        margin : 1rem;
+        padding : 0.75rem;
+        padding-top : 0.25rem;
+        padding-bottom : 0.25rem;
+        background-image: var(--card-not-approved);
+        border-radius: 50%;
+    }
+}
