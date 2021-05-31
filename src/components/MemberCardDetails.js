@@ -1,4 +1,5 @@
 import React,{ useState, useEffect } from 'react';
+import {Redirect} from 'react-router-dom';
 import AddEditMember from '../components/AddEditMember';
 import DeleteMember from '../components/DeleteMember';
 import '../style/MemberCardDetails.scss'
@@ -12,7 +13,7 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
 
     
     // To figure out if the edit button was clicked
-    const [clicked, setClicked] = useState([ false, false, false]);
+    const [clicked, setClicked] = useState([ false, false, false, false]);
     const [isApproved, setIsApproved] = useState(()=> (member && member.isAdmin) ? true : ((member) ? member.isApproved : true));
 
     useEffect(()=> {}, [isApproved]);
@@ -40,9 +41,10 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
     }
 
     //Define the optional edit and delete buttons
-    const editButton = (<button onClick={()=>{setClicked([true, false, false])}}><div className='dp-editIcon'></div>Edit</button>);
-    const deleteButton = (<button onClick={()=>{setClicked([false, true, false])}} ><div className='dp-deleteIcon'></div></button>);
-    const approveButton = (<button onClick={()=>{setClicked([false, false, true])}} name='approve'>Approve</button>);
+    const editButton = (<button onClick={()=>{setClicked([true, false, false, false])}}><div className='dp-editIcon'></div>Edit</button>);
+    const deleteButton = (<button onClick={()=>{setClicked([false, true, false, false])}} ><div className='dp-deleteIcon'></div></button>);
+    const approveButton = (<button onClick={()=>{setClicked([false, false, true, false])}} name='approve'>Approve</button>);
+    const printButton = (<button onClick={()=>{setClicked([false, false, false, true])}} name='approve'>Print</button>);
     const disApproveButton = (<button onClick={()=>{setClicked([false, false, true])}} name='dis-approve'>Dis-approve</button>);
     const notApprovedClass = (!isApproved) ? 'backgroundUnset' : '';
 
@@ -109,6 +111,15 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
         //Function to approve or dis-approve member
         toggleApproval(member);
     }
+    //If the print button is clicked
+    if(clicked[3]) {
+        //Start the print utility
+        console.log('Print');
+        return (
+            <>
+                <Redirect to='/members/print' />
+            </>);
+    }
 
     return (
         <div className='dp-detailedCardPage'>
@@ -136,6 +147,7 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
                         {(buttonsVisible)? editButton : undefined}
                         {(buttonsVisible)? deleteButton : undefined}
                         {(buttonsVisible && isAdmin && !isApproved)? approveButton : ( (buttonsVisible && isAdmin && isApproved) ? disApproveButton : undefined)}
+                        {(buttonsVisible && loggedIn) ? printButton : undefined}
                     </div>
                     
                 </div>

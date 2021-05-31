@@ -1,51 +1,67 @@
 .navbar {
     background-image: var(--navbar-background);
     border-radius: 1px;
-        height:110px;
-        font-size: 1.5rem;
+    height:110px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    width : 100%;
+    .navchunk {
         display: flex;
         align-items: center;
-        width : 100%;
-        .navchunk {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            width:50%;
-            .links {
-                color: var(--light-color);
-                font-size : 1.1rem;
-                margin : 0.5rem;
-                transition: 0.1s;  
-            }
-            .links:hover{
-                text-shadow: var(--shadow-dark);
-                color: var(--button-select);
-                text-decoration: underline;
-            }
-            .links:focus{
-                color : var(--text-focus-color);
-            }
-    
+        justify-content: flex-end;
+        width:50%;
+        .links {
+            color: var(--light-color);
+            font-size : 1.1rem;
+            margin : 0.5rem;
+            transition: 0.1s;  
         }
-        .logoName {
-            display : flex;
-            justify-content: right;
-            align-items: center;
-            width : 50%
+        .links:hover{
+            text-shadow: var(--shadow-dark);
+            color: var(--button-select);
+            text-decoration: underline;
+        }
+        .links:focus{
+            color : var(--text-focus-color);
+        }
+
+    }
+    .logoName {
+        display : flex;
+        justify-content: right;
+        align-items: center;
+        width : 50%
+    }
+    .advocateIcon {
+        background-image : var(--advocate-icon);
+        background-size: cover;
+        height: 40px;
+        width : 40px;
+        margin : 10px;
+    }
+    .searchIcon {
+        background-image : var(--search-icon);
+        background-size: cover;
+        height: 18px;
+        width : 18px;
+        margin : 10px;
+    }
+}
+
+@media print {
+    .navbar {
+        all : unset;
+        .navchunk{
+            all : unset;
+            .links{
+                color : white;
+            }
         }
         .advocateIcon {
-            background-image : var(--advocate-icon);
-            background-size: cover;
-            height: 40px;
-            width : 40px;
-            margin : 10px;
+            all : unset;
         }
-        .searchIcon {
-            background-image : var(--search-icon);
-            background-size: cover;
-            height: 18px;
-            width : 18px;
-            margin : 10px;
-        }
+    }
+
 }
 

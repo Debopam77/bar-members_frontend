@@ -32,7 +32,6 @@ function MemberCard({member, propsOnClick}) {
                 </div>
                 <img src={(member.avatar && member.avatar.data.length>0) ? getFileURL(convertBufferToImg(member.avatar.data)) : blankUserImage} className='avatar' alt='avatar'></img>
             </div>
-            
         </div>)
     );
 

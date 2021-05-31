@@ -14,7 +14,6 @@ html {
 body{
     color : var(--light-color);
     font-family: Arial, Helvetica, sans-serif;
-
 }
 
 a {
@@ -88,5 +87,23 @@ input:focus {
         padding-bottom : 0.25rem;
         background-image: var(--card-not-approved);
         border-radius: 50%;
+    }
+}
+
+@media print {
+    html {
+        all : unset;
+    }
+    body {
+        color : white;
+    }
+    button {
+        all : unset;
+    }
+    button:hover{
+        all : unset;
+    }
+    button:focus{
+        all : unset;
     }
 }
