@@ -9,13 +9,17 @@ import blankUserImage from '../resources/img/user.png';
 import {arrayToString, arrayToDayString} from '../utilFunctions/displayArrays';
 import axios from 'axios';
 
-function MemberCardDetails({member, loggedIn, isAdmin}) {
+function MemberCardDetails({member, members, loggedIn, isAdmin}) {
 
-    
+    //Getting the phone number from the query string if any
+    const queryParams = new URLSearchParams(window.location.search)
+    const phoneNumber = queryParams.get('phone');
+
     // To figure out if the edit button was clicked
     const [clicked, setClicked] = useState([ false, false, false, false]);
     const [isApproved, setIsApproved] = useState(()=> (member && member.isAdmin) ? true : ((member) ? member.isApproved : true));
-
+    
+    //Refresh if approval status is changed
     useEffect(()=> {}, [isApproved]);
 
     //Avatar picture file
@@ -24,8 +28,14 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
     //If edit button should be visible or not
     let buttonsVisible = false;
 
-    //If we get a member prop and the user is an admin
-    if(member && isAdmin){
+    //If a phone number is passed in the query string
+    if(phoneNumber){
+        member = (members.filter((member)=> (member.phone === phoneNumber)))[0];
+        if(!member)
+            return(<div className='member'>INVALID DETAILS</div>);
+
+    //If we get a member prop and the user is an admin    
+    }else if(member && isAdmin){
         buttonsVisible = true;
     //If the user is editing their own data    
     }else if(!member && loggedIn){
@@ -117,7 +127,7 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
         console.log('Print');
         return (
             <>
-                <Redirect to='/members/print' />
+                <Redirect to={'/members/print/?phone='+member.phone} />
             </>);
     }
 
@@ -147,7 +157,7 @@ function MemberCardDetails({member, loggedIn, isAdmin}) {
                         {(buttonsVisible)? editButton : undefined}
                         {(buttonsVisible)? deleteButton : undefined}
                         {(buttonsVisible && isAdmin && !isApproved)? approveButton : ( (buttonsVisible && isAdmin && isApproved) ? disApproveButton : undefined)}
-                        {(buttonsVisible && loggedIn) ? printButton : undefined}
+                        {(buttonsVisible && isAdmin) ? printButton : undefined}
                     </div>
                     
                 </div>

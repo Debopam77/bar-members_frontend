@@ -1,30 +1,38 @@
-import React, {useRef} from 'react';
-
+import React from 'react';
 import '../style/MemberCard.scss';
+import generateQRCode from '../utilFunctions/generateQRCode';
 import MemberCard from '../components/MemberCard';
 import MemberCardBack from '../components/MemberCardBack';
 
-function Print({loggedIn}) {
+const Print = ({members}) => {
+    //Extracting the phone number from the url
+    const queryParams = new URLSearchParams(window.location.search)
+    const phoneNumber = queryParams.get('phone');
 
+    //Do when print button is clicked
     const printListner = ()=> {
-        printButton = undefined;
         window.print();
     };
+    //Print button defination
     let printButton = <button onClick={printListner}>Print</button>;
 
-    if(!loggedIn)
-        return (<div>Not Logged In</div>);
+    //Get member object from the phone number
+    const member = (members.filter((member)=> (member.phone === phoneNumber)))[0];
 
-    const member = JSON.parse(localStorage.getItem('loggedInUser')).member;
+    if(!member) {
+        return (<div className='member'> INVALID USER DETAILS</div>)
+    }
+
+    const url = 'http://'+(process.env.REACT_APP_FRONTEND_URL)+'/members/detail/?phone='+phoneNumber;
 
     return (
         <>
             <h2>To Print</h2>
             <div className='member'>
-                <MemberCard member={member} loggedIn={loggedIn}/>
+                <MemberCard member={member}/>
             </div>
             <div className='member'>
-                <MemberCardBack member={member} loggedIn={loggedIn}/>
+                <MemberCardBack src={generateQRCode(url)} url={url}/>
             </div>
             <div className='member'>
                 {printButton}    

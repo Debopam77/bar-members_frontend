@@ -56,10 +56,10 @@ function Router() {
                 <DeleteMember setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
             </Route>
             <Route path='/members/print'>
-                <Print loggedIn={loggedIn}/>
+                <Print members={members}/>
             </Route>
             <Route path='/members/detail'>
-                <MemberCardDetails loggedIn={loggedIn}/>
+                <MemberCardDetails members={members} loggedIn={loggedIn}/>
             </Route>
             <Route path='/members'>
                 {//Sending the members state array as props
