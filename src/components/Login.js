@@ -30,7 +30,7 @@ function Login({setLoggedIn}) {
         event.preventDefault();
         
         //call axios api
-        const url = 'http://'+(process.env.REACT_APP_URL)+'/members/login';
+        const url = 'https://'+(process.env.REACT_APP_URL)+'/members/login';
 
         try {
             //const response = await 

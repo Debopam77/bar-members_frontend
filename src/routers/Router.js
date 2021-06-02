@@ -31,7 +31,7 @@ function Router() {
         //Declared inside because if declared outside REACT gives warning
         const getMembers = async ()=> {
             try {
-                const url = 'http://'+environment+'/members'
+                const url = 'https://'+environment+'/members'
                 const member = await Axios.get(url);
                 setMembersValue(member.data);
             }catch(e){

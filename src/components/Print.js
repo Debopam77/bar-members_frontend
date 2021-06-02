@@ -23,7 +23,7 @@ const Print = ({members}) => {
         return (<div className='member'> INVALID USER DETAILS</div>)
     }
 
-    const url = 'http://'+(process.env.REACT_APP_FRONTEND_URL)+'/members/detail/?phone='+phoneNumber;
+    const url = 'https://'+(process.env.REACT_APP_FRONTEND_URL)+'/members/detail/?phone='+phoneNumber;
 
     return (
         <>

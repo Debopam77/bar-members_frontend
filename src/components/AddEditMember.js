@@ -157,7 +157,7 @@ function AddEditMember({member}) {
         const isAdmin = JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin;
         const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
         let payload = newValue;
-        const url = 'http://'+(process.env.REACT_APP_URL)+'/members/';
+        const url = 'https://'+(process.env.REACT_APP_URL)+'/members/';
         const axiosConfig = {
             headers : {
                 Authorization : 'Bearer '+userToken

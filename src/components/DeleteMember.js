@@ -14,7 +14,7 @@ function DeleteMember({member, isAdmin}) {
         if(event.target.id === 'yes') {
 
             //Define needed data for api call
-            const url = 'http://'+(process.env.REACT_APP_URL)+'/members';
+            const url = 'https://'+(process.env.REACT_APP_URL)+'/members';
             const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
             
             const payload = {

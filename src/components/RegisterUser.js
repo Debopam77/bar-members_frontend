@@ -25,7 +25,7 @@ function RegisterUser({setLoggedIn}) {
             return;
         }
 
-        const url = 'http://'+(process.env.REACT_APP_URL)+'/members';
+        const url = 'https://'+(process.env.REACT_APP_URL)+'/members';
 
         //Trigger api to create new user
         try{
