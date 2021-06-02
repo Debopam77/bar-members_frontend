@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import '../style/index.scss';
 import './../style/MemberCard.scss';
-import {getFileURL} from '../utilFunctions/avatarImageConversions'
 
 function MemberCardBack({src, url}) {
     const [imageSRC, setImageSRC] = useState('');
