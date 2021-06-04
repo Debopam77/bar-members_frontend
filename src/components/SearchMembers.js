@@ -11,7 +11,7 @@ function SearchMembers({members}) {
     const renderOutput = () => {
 
         const getValue= (event)=> {
-            setSearchValue(event.target.value);
+            setSearchValue((event.target.value).toLowerCase());
         }    
 
         const isAdmin = (JSON.parse(localStorage.getItem('loggedInUser')))? JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin : false;

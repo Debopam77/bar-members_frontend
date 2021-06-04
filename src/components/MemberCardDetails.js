@@ -155,9 +155,9 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
                     </div>  
                     <div className='dp-buttonDock'>
                         {(buttonsVisible)? editButton : undefined}
-                        {(buttonsVisible)? deleteButton : undefined}
                         {(buttonsVisible && isAdmin && !isApproved)? approveButton : ( (buttonsVisible && isAdmin && isApproved) ? disApproveButton : undefined)}
                         {(buttonsVisible && isAdmin) ? printButton : undefined}
+                        {(buttonsVisible)? deleteButton : undefined}
                     </div>
                     
                 </div>

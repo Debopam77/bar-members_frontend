@@ -20,7 +20,7 @@ function Navbar({loggedIn}) {
     let navBarItems = [
         {
             url: '/searchMembers',
-            class: 'searchIcon nav-link',
+            class: 'searchIcon',
         },
         {
             title : 'Home',

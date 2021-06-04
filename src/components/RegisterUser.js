@@ -79,34 +79,37 @@ function RegisterUser({setLoggedIn}) {
     }
 
     return (
-        <form className='loginRegister' onSubmit={submit}>
-            <h2>Enter user details here</h2>
+        <div className='loginRegister'>
+            <form className='centerElements' onSubmit={submit}>
+                <h2>Enter user details here</h2>
 
-            <div>Name :
-                <div className='descriptionInputLogin'><div className='description'>First name</div>
-                <input onChange={getValue} required name='name.firstName'></input></div>
+                <div>Name :
+                    <div className='descriptionInputLogin'><div className='description'>First name</div>
+                    <input onChange={getValue} required name='name.firstName'></input></div>
 
-                <div className='descriptionInputLogin'><div className='description'>Middle name</div>
-                <input onChange={getValue} name='name.middleName'></input></div>
+                    <div className='descriptionInputLogin'><div className='description'>Middle name</div>
+                    <input onChange={getValue} name='name.middleName'></input></div>
 
-                <div className='descriptionInputLogin'><div className='description'>Last name</div>
-                <input onChange={getValue} required name='name.lastName'></input></div>
-            </div>
+                    <div className='descriptionInputLogin'><div className='description'>Last name</div>
+                    <input onChange={getValue} required name='name.lastName'></input></div>
+                </div>
 
-            <div className='descriptionInputLogin'><div className='description'>Email :</div>
-            <input onChange={getValue} required name='email'></input></div>
+                <div className='descriptionInputLogin'><div className='description'>Email :</div>
+                <input onChange={getValue} required name='email'></input></div>
 
-            <div className='descriptionInputLogin'><div className='description'>Phone :</div>
-            <input onChange={getValue} required name='phone'></input></div>
+                <div className='descriptionInputLogin'><div className='description'>Phone :</div>
+                <input onChange={getValue} required name='phone'></input></div>
 
-            <div className='descriptionInputLogin'><div className='description'>Password :</div>
-            <input type='password' onChange={getValue} required name='password'></input></div>
+                <div className='descriptionInputLogin'><div className='description'>Password :</div>
+                <input type='password' onChange={getValue} required name='password'></input></div>
 
-            <div className='descriptionInputLogin'><div className='description'>Confirm Password :</div>
-            <input onChange={getValue} required name='confirmPassword' className={(!passwordMatches)? 'passwordMatches' : ''}></input></div>
+                <div className='descriptionInputLogin'><div className='description'>Confirm Password :</div>
+                <input onChange={getValue} required name='confirmPassword' className={(!passwordMatches)? 'passwordMatches' : ''}></input></div>
 
-            <button name='register'>Register</button>
-        </form>
+                <button name='register'>Register</button>
+            </form>
+        </div>
+        
     );
 }
 

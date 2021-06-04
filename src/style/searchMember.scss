@@ -1,5 +1,3 @@
-
-
 .searchMembers {
     display : flex;
     justify-content: center;
@@ -19,4 +17,20 @@
 .suggestion:hover{
     background-image: var(--card-background);
     box-shadow: var(--shadow-dark);
+}
+h2{
+    text-align: center;
+}
+input {
+    width : 400px;
+}
+@media only screen and (max-width : 750px) {
+    h2{
+        font-size: 110%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    input {
+        width : 300px;
+    }
 }
