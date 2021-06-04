@@ -1,15 +1,17 @@
 .card {
-    margin : 1.5rem;
+    margin : 25px;
     background-image: var(--card-background);
     box-shadow: var(--shadow-light);
-    font-size : 13px;
+    font-size : 12px;
     font-family: 'Courier New', Courier, monospace;
     transition: 0.25s;
-    width: 28rem;
-    height: 16rem;
-    padding: 0.75rem;
-    border-radius: 1rem;
-    color : var(--light-color);
+    width: 385px;
+    height: 235px;
+    min-width: 385px;
+    min-height: 235px;
+    padding: 8px;
+    border-radius: 15px;
+    border : solid 3px #f8f5f1;
     .memberName{
         display : flex;
         align-items: center;
@@ -20,9 +22,9 @@
             justify-content: flex-start;
             background-image : var(--advocate-icon);
             background-size: cover;
-            height: 2rem;
-            width : 2rem;
-            padding-right: 2rem;
+            height: 35px;
+            width : 35px;
+            padding-right: 15px;
         }
         .associationChunk {
             display: flex;
@@ -47,16 +49,19 @@
 
     }
     .cardContents {
+        align-self: center;
         display : flex;
         background-image: var(--card-info-background);
-        border-radius: 1rem;
+        border-radius: 10px;
+        max-height: 138px;
+        min-height: 138px;
         .avatar {
-            display : flex;
             margin : 2px;
-            margin-top: 0.75rem;
-            justify-content: center;
-            width : 120px;
-            height : 120px;
+            margin-top: 20px;
+            justify-content: cover;
+            width : 100px;
+            min-width: 100px;
+            height : 100px;
         }
         .space{
             display: flex;
@@ -65,9 +70,9 @@
             width : 90%;
             .pad{
                 display : flex;
-                padding: 0.025rem;
+                padding: 0px;
+                margin : 5px;
                 text-align: left;
-                align-items: center;
                 .memberInfo{
                     display : flex;
                     justify-content: flex-end;
@@ -91,6 +96,7 @@
     display : flex;
     flex-direction: column;
     .highlight{
+        margin : 3px;
         align-items: center;
         font-weight: bold;
         display : flex;
@@ -106,13 +112,15 @@
     .advocate {
         display : flex;
         justify-content: flex-end;
+        margin-bottom: 5px;
         font-size : 95%;
     }
 }
 h2 {
     display : flex;
     justify-content: center;
-    padding-top: 2.75rem;
+    padding-top : 2.75rem;
+    padding-bottom: 2rem;
 }
 
 .not-approved {
@@ -130,5 +138,41 @@ h2 {
         width : 8rem;
         height : 8rem;
         border-radius: 1rem;
+    }
+}
+
+@media only screen and (max-width : 650px) {
+    .card {
+        margin-left : 5px;
+        margin-right: 5px;
+        max-width : 370px;
+        min-width: 370px;
+        max-height: 230px;
+        min-height: 230px;
+    }
+    .nameDisplay {
+        font-size: 95%;
+    }
+    .card .memberName {
+        font-size: 95%;
+    }
+    .card .memberName .advocateIcon {
+        height : unset;
+        width : unset;
+        height: 32px;
+        width : 32px;
+        padding-right: 15px;
+    }
+    .card .cardContents {
+        font-size: 95%;
+    }
+    .card .cardContents .avatar{
+        all : unset;
+        object-fit: cover;
+        margin-top: 23px;
+        width : 92px;
+        min-width: 92px;
+        height : 92px;
+        border-radius: 50%;
     }
 }

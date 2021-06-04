@@ -75,7 +75,7 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
 
     const toggleApproval = async (member)=> {
         const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
-        const url = 'https://'+(process.env.REACT_APP_URL)+'/members/';
+        const url = (process.env.REACT_APP_SSL)+(process.env.REACT_APP_URL)+'/members/';
         const axiosConfig = {
             headers : {
                 Authorization : 'Bearer '+userToken

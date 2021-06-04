@@ -15,7 +15,7 @@ function Logout({setLoggedIn}) {
         if(event.target.id === 'yes') {
             
             //Define needed data for api call
-            const url = 'https://'+(process.env.REACT_APP_URL)+'/members/logout';
+            const url = (process.env.REACT_APP_SSL)+(process.env.REACT_APP_URL)+'/members/logout';
             const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
             const axiosConfig = {
                 headers : {

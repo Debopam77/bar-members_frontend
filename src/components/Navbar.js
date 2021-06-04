@@ -1,15 +1,26 @@
 import React,{useState, useEffect} from 'react';
 import '../style/index.scss';
 import '../style/Navbar.scss';
+import {convertBufferToImg, getFileURL} from '../utilFunctions/avatarImageConversions';
+import blankUserImage from '../resources/img/user.png';
 
 function Navbar({loggedIn}) {
-    const [user, setUser] = useState();
 
+    //weather to show navbar links or a button (Reactive)
+    const [showNavMenu, setShowNavMenu] = useState(false);
+
+    const navMenuElement = <div className='navMenuIcon' onClick={()=>{setShowNavMenu(!showNavMenu)}}></div>;
+
+    
+
+    //Storing the user data
+    const [user, setUser] = useState();
+    let myAvatarElement = undefined;
     //Array of the navbar links
     let navBarItems = [
         {
             url: '/searchMembers',
-            class: 'searchIcon',
+            class: 'searchIcon nav-link',
         },
         {
             title : 'Home',
@@ -43,29 +54,34 @@ function Navbar({loggedIn}) {
         setUser(JSON.parse(localStorage.getItem('loggedInUser')));
     }, [loggedIn]);
 
+    //Things to change once an user logs in
     if(loggedIn){
-        
+        //Add logout link
         navBarItems[4] = {
             title : 'Logout',
             url: '/members/logout',
             class: 'nav-links'
         }
-        navBarItems.splice(3, 1, {
-            title : 'Me',
-            url: '/members/detail',
-            class: 'nav-links'
-        });
+        //Remove the login link
+        navBarItems.splice(3, 1);
+
+        //Add an image of the user an point it to the user profile
+        myAvatarElement = (user) ? <a href='/members/detail'><img src={(user.member.avatar && user.member.avatar.data.length>0) ? getFileURL(convertBufferToImg(user.member.avatar.data)) : blankUserImage} className='avatar' alt='avatar'></img></a> : undefined;
     }
 
     return (
         <div className='navbar'>
-            <div className='logoName'><div className='advocateIcon'></div><a href='/'>{(user)? 'Welcome '+user.member.name.firstName : 'Bar-Council Members'}</a></div>
+            <div className='logoName'><a href='/'><div className='advocateIcon'></div></a><a href='/'> {(user)? 'Welcome '+user.member.name.firstName : 'Bar-Council Members'}</a></div>
             <div className='navchunk'>
-                {navBarItems.map((item, index)=> {
+                <div className='links' id={(showNavMenu) ? 'hidden' : ''}>
+                    {navBarItems.map((item, index)=> {
                     return (
-                        <a key={'navLink'+index} className={item.class+' links'} href={item.url}>{item.title}</a>
+                        <a key={'navLink'+index} className={item.class} href={item.url}>{item.title}</a>
                     )
-                })}
+                    })}
+                </div>
+                {myAvatarElement}
+                {navMenuElement}
             </div>
         </div>
     );

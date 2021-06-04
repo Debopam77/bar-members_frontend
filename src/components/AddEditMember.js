@@ -92,8 +92,6 @@ function AddEditMember({member}) {
             
             try {
                 const arrayBufferImage = await convertImgToBuffer(file);
-                console.log(arrayBufferImage);
-
                 setAvatarPic({
                     bufferImage : arrayBufferImage,
                     url : URL.createObjectURL(file)
@@ -157,7 +155,7 @@ function AddEditMember({member}) {
         const isAdmin = JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin;
         const userToken = JSON.parse(localStorage.getItem('loggedInUser')).token;
         let payload = newValue;
-        const url = 'https://'+(process.env.REACT_APP_URL)+'/members/';
+        const url = (process.env.REACT_APP_SSL)+(process.env.REACT_APP_URL)+'/members/';
         const axiosConfig = {
             headers : {
                 Authorization : 'Bearer '+userToken
@@ -193,7 +191,6 @@ function AddEditMember({member}) {
             //Tell the component to redirect back to the details page
             setRedirectToDetails(true);
         }catch(e){
-            console.log(e);
             alert(e.message);
         }
     }
