@@ -7,6 +7,7 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.8",
     "axios": "^0.21.1",
+    "browser-image-compression": "^1.0.14",
     "dateformat": "^4.5.1",
     "env-cmd": "^10.1.0",
     "node-sass": "^6.0.0",

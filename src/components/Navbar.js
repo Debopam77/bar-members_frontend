@@ -19,8 +19,9 @@ function Navbar({loggedIn}) {
     //Array of the navbar links
     let navBarItems = [
         {
+            title : 'Search',
             url: '/searchMembers',
-            class: 'searchIcon',
+            class: 'searchIcon nav-links',
         },
         {
             title : 'Home',

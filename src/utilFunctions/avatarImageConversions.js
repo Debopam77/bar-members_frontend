@@ -1,14 +1,33 @@
+import imageCompression from 'browser-image-compression';
+
+const compressImage = async (file)=> {
+    let compressed = undefined;
+    const options = {
+        maxWidthOrHeight : 250,
+        useWebWorker : true,
+        fileType : 'png'
+    }
+    try {
+        compressed = await imageCompression(file, options);
+    }catch(e) {
+        alert(e);
+    }
+    console.log(compressed);
+    return (compressed);
+}
 
 const convertImgToBuffer = async (file)=> {
     
-    if(parseInt(file.size) < 150000) {
-        const imgFileTypes = ['.jpeg', '.jfif', '.png', '.jpg'];
+    if(parseInt(file.size) < 2000000) {
+        const imgFileTypes = ['.jpeg', '.png', '.jpg'];
         imgFileTypes.forEach((element) => {
             if(file.name.toLowerCase().includes(element))
                 imgFileTypes.push('Is an Image');
         });
         if(imgFileTypes[imgFileTypes.length-1] === 'Is an Image'){
-            const arrayBufferImage = await file.arrayBuffer();
+            //Wait while the image compression works its magic
+            const temp = await compressImage (file);
+            const arrayBufferImage = await temp.arrayBuffer();
             const bufferImage = Buffer.from(arrayBufferImage);
             return bufferImage;
         }

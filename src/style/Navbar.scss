@@ -8,6 +8,7 @@
     width : 100%;
     .navchunk {
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: flex-end;
         width:50%;
@@ -19,6 +20,7 @@
             font-size : 1.1rem;
             padding : 0.5rem;
             transition: 0.25s;  
+            
         }
         .nav-links:hover{
             box-shadow: var(--shadow-light);
@@ -32,7 +34,6 @@
             border-radius: 1.5rem;
             background-color: var(--button-select);
         }
-        
         .avatar {
             width : 3rem;
             height : 3rem;
@@ -63,16 +64,6 @@
         }
     }
 
-    .searchIcon {
-        background-image : var(--search-icon);
-        background-size: cover;
-        min-height: 25px;
-        min-width : 25px;
-        max-height: 25px;
-        max-width : 25px;
-        margin : 0.12rem;
-        align-self: center;
-    }
 }
 
 .navMenuIcon {
