@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import loaderElement from '../utilFunctions/loaderElement';
 
 function Login({setLoggedIn}) {
     
+    const [sent, setSent] = useState(false);
+    //UseEffect to check weather the sent state has been changed or not
+    useEffect(()=>{},[sent]);
+
     const [inputValues, setInputValues] = useState({
         phone : '',
         password : ''
@@ -33,6 +38,8 @@ function Login({setLoggedIn}) {
         const url = (process.env.REACT_APP_SSL)+(process.env.REACT_APP_URL)+'/members/login';
 
         try {
+            //Change the sent state to true
+            setSent(true);
             //const response = await 
             const res = await Axios.post(url, inputValues);
             //Store login data in the browser local storage
@@ -55,7 +62,7 @@ function Login({setLoggedIn}) {
     }
     
     //The login form 
-    return (
+    const output = (
         <div className='loginRegister'>
             <h2>Enter your login details</h2>
             <form className='centerElements' onSubmit={login}>
@@ -67,6 +74,7 @@ function Login({setLoggedIn}) {
             </form>
         </div>
     );
+    return (sent) ? loaderElement : output;
 }
 
 export default Login;

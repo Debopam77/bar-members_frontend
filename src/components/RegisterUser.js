@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import loaderElement from '../utilFunctions/loaderElement';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import axios from 'axios';
@@ -6,6 +7,9 @@ import {Redirect} from 'react-router-dom';
 
 function RegisterUser({setLoggedIn}) {
 
+    const [sent, setSent] = useState(false);
+    //UseEffect to check weather the sent state has been changed or not
+    useEffect(()=>{},[sent]);
     const [passwordMatches, setPasswordMatches] = useState('placeholder');
     const [redirectToHome, setRedirectToHome] = useState(false);
     const [newUser, setNewUser] = useState({
@@ -29,6 +33,8 @@ function RegisterUser({setLoggedIn}) {
 
         //Trigger api to create new user
         try{
+            //change sent state to true
+            setSent(true);
             const response = await axios.post(url, newUser);
             localStorage.setItem('loggedInUser', JSON.stringify(response.data));
 
@@ -78,7 +84,7 @@ function RegisterUser({setLoggedIn}) {
         );
     }
 
-    return (
+    const output = (
         <div className='loginRegister'>
             <form className='centerElements' onSubmit={submit}>
                 <h2>Enter user details here</h2>
@@ -109,8 +115,9 @@ function RegisterUser({setLoggedIn}) {
                 <button name='register'>Register</button>
             </form>
         </div>
-        
     );
+
+    return (sent) ? loaderElement : output ;
 }
 
 export default RegisterUser;

@@ -1,10 +1,15 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import loaderElement from '../utilFunctions/loaderElement';
 
 function DeleteMember({member, isAdmin}) {
+
+    const [sent, setSent] = useState(false);
+    //UseEffect to check weather the sent state has been changed or not
+    useEffect(()=>{},[sent]);
 
     //State to keep track when to redirect to home
     const [redirectState, setRedirectState] = useState(false);
@@ -29,7 +34,8 @@ function DeleteMember({member, isAdmin}) {
             
             //Call the delete api
             try {
-                console.log(payload);
+                //Changing sent state to true
+                setSent(true);
                 const response = await axios.delete(url, axiosConfig);
 
                 //If we are not deleting from an admin account, we need to logout and set local storage empty
@@ -52,12 +58,16 @@ function DeleteMember({member, isAdmin}) {
 
     if(member.isAdmin)
         return (<div className='deleteMember'>Admins can't be deleted, contact developer for assistance.</div>);
-        //Show logout options    
-    return (<div className='loginRegister'>
-        <h2>Do you want to Delete member { member.name.firstName} ?</h2>
-        <button onClick={deleteActions} id='yes'>Yes</button>
-        <button onClick={deleteActions} id='no'>No</button>
-    </div>);
+
+    //Show logout options    
+    const output = (
+        <div className='loginRegister'>
+            <h2>Do you want to Delete member { member.name.firstName} ?</h2>
+            <button onClick={deleteActions} id='yes'>Yes</button>
+            <button onClick={deleteActions} id='no'>No</button>
+        </div>
+    );
+    return (sent) ? loaderElement : output;
 }
 
 export default DeleteMember;

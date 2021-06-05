@@ -129,16 +129,34 @@ h2 {
 
 .centerQRCode {
     display : flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    .qrcode {
+    .QRCode {
         margin : 1rem;
+        margin-bottom: 0.75rem;
         width : 8rem;
         height : 8rem;
         border-radius: 1rem;
     }
+    .signature {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .signatureSpace {
+            background-color: var(--light-color);
+            border-radius: 1rem;
+            padding : 1.5rem;
+            margin: 1rem;
+            width : 9rem;
+        }
+        
+    }
+}
+.QRCodeURL {
+    text-align: center;
+    font-size: 90%;
 }
 
 @media only screen and (max-width : 650px) {
@@ -174,5 +192,18 @@ h2 {
         min-width: 92px;
         height : 92px;
         border-radius: 50%;
+    }
+    .signature .signatureText {
+        font-size: 90%;
+    }
+    .centerQRCode .QRCode {
+        margin : 0.75rem;
+        margin-bottom: 1.5rem;
+        width : 7rem;
+        height : 7rem;
+        border-radius: 1rem;
+    }
+    .QRCodeURL {
+        font-size: 80%;
     }
 }

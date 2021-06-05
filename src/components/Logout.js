@@ -1,11 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import loaderElement from '../utilFunctions/loaderElement';
 
 
 function Logout({setLoggedIn}) {
+
+    const [sent, setSent] = useState(false);
+    //UseEffect to check weather the sent state has been changed or not
+    useEffect(()=>{},[sent]);
+
     //To intimate Redirect component
     const [redirectState, setRedirectState] = useState(false);
 
@@ -24,6 +30,8 @@ function Logout({setLoggedIn}) {
             };
             //Call the logout api
             try {
+                //Changing sent state to true
+                setSent(true);
                 await axios.post(url, {}, axiosConfig);
             }catch(e){
                 alert(e);
@@ -43,11 +51,14 @@ function Logout({setLoggedIn}) {
     }
 
     //Show logout options    
-    return (<div className='loginRegister'>
-        <h2>Want to logout?</h2>
-        <button onClick={logoutActions} id='yes'>Yes</button>
-        <button onClick={logoutActions} id='no'>No</button>
-    </div>);
+    const output = (
+        <div className='loginRegister'>
+            <h2>Want to logout?</h2>
+            <button onClick={logoutActions} id='yes'>Yes</button>
+            <button onClick={logoutActions} id='no'>No</button>
+        </div>
+    );
+    return (sent) ? loaderElement : output;
 }
 
 export default Logout;

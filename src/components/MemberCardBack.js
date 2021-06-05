@@ -13,9 +13,13 @@ function MemberCardBack({src, url}) {
             <div>
                 <div className='memberName'><div className='advocateIcon'/><div className='associationChunk'><div className='associationHeading'>Displaced Lawyers' Bar Association</div><div className='associationAddress'>Barrackpore Court, WB, Kolkata - 700120</div></div></div>
                 <div className='centerQRCode'>
-                    <img src={imageSRC} className='qrcode' alt='qrcode'></img>
-                    <div>{url}</div>
+                    <img src={imageSRC} className='QRCode' alt='qrcode'></img>
+                    <div className='signature'>
+                        <div className='signatureSpace'/>
+                        <div className='signatureText'>Secretary (DLBA, BKP)</div>
+                    </div>
                 </div>
+                <div className='QRCodeURL'>{url}</div>
             </div>
         </div>);
 }

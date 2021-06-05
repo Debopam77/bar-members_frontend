@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import dateFormat from 'dateformat';
@@ -8,9 +8,14 @@ import {arrToObj, keyToValueConvert} from '../utilFunctions/arrayObjectConversio
 import {Redirect} from 'react-router-dom';
 import blankUserImage from '../resources/img/user.png'
 import {convertImgToBuffer, convertBufferToImg} from '../utilFunctions/avatarImageConversions';
+import loaderElement from '../utilFunctions/loaderElement';
 import axios from 'axios';
 
 function AddEditMember({member}) {
+
+    //Is the request sent then start load animation
+    const [sent, setSent] = useState(false);
+    useEffect(()=>{},[sent]);
 
     //Values that cannot be changed
     const excludedAttributes = ['phone', 'registration', 'updatedAt', 'age', 'isAdmin', 'chamberOpenDays', 'courtOfPractice', 'expertise', 'certificates', 'qualification'];
@@ -178,8 +183,12 @@ function AddEditMember({member}) {
                 avatar : (avatarPic.bufferImage) ? avatarPic.bufferImage : ''
             }
 
+            //Request is sent
+            setSent(true);
+
             //Making the request with the PAYLOAD and the Configurations
             const res = await axios.patch(url, payload, axiosConfig);
+
             const localStorageToStore = {
                 member : res.data,
                 token : userToken
@@ -203,7 +212,7 @@ function AddEditMember({member}) {
         </>);
     }
 
-    return (
+    const output = (
         <div className='loginRegister'>
 
             <h2>Add or edit details</h2>
@@ -282,6 +291,8 @@ function AddEditMember({member}) {
             </form>
         </div>
     );
+
+    return (sent) ? loaderElement : output ;
 }
 
 export default AddEditMember;

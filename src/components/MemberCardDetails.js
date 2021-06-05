@@ -7,9 +7,13 @@ import '../style/index.scss';
 import {getAvatar} from '../utilFunctions/avatarImageConversions';
 import blankUserImage from '../resources/img/user.png';
 import {arrayToString, arrayToDayString} from '../utilFunctions/displayArrays';
+import loaderElement from '../utilFunctions/loaderElement';
 import axios from 'axios';
 
 function MemberCardDetails({member, members, loggedIn, isAdmin}) {
+
+    const [sent, setSent] = useState(false);
+    useEffect(()=> {}, [sent]);
 
     //Getting the phone number from the query string if any
     const queryParams = new URLSearchParams(window.location.search)
@@ -30,7 +34,14 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
 
     //If a phone number is passed in the query string
     if(phoneNumber){
+
+        //Waiting till the members object is populater
+        if(members.length === 0)
+            return(loaderElement);
+        //Finding the correct member using the phone number
         member = (members.filter((member)=> (member.phone === phoneNumber)))[0];
+
+        //If none of the members match the phone number    
         if(!member)
             return(<div className='member'>INVALID DETAILS</div>);
 
@@ -89,13 +100,18 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
         try {
             if(isAdmin){
                 setClicked([false, false, false]);
+                //Change sent state to true
+                setSent(true);
                 //Call the edit api and pass the edit request
                 const res = await axios.patch(url, payload, axiosConfig);
                 if(res) {
                     //Set the isApproved state to opposite of what it was before
                     setIsApproved(!isApproved);
+                    //Chang sent state to false
+                    setSent(false);
                     //Provide an alert to indicate that it was completed successfully
                     alert(member.name.firstName + ' is '+ ((payload.isApproved) ? 'approved' : 'dis-approved'));
+
                 }
             }else
                 throw new Error('Must be an admin to approve');
@@ -131,7 +147,7 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
             </>);
     }
 
-    return (
+    const output = (
         <div className='dp-detailedCardPage'>
             <h2>Member Details</h2>     
             <div className={'dp-detailedCard '+notApprovedClass}>
@@ -164,6 +180,8 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
             </div>
         </div>
     );
+
+    return (sent) ? loaderElement : output;
 }
 
 export default MemberCardDetails;
