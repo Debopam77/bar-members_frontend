@@ -77,7 +77,7 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
     const certificateElement = (member.certificates[0]) ? (<div className='dp-pad'>Certificates : <span className='dp-memberInfo'>{arrayToString(member.certificates, 15)}</span></div>) : undefined;
     const courtsElement = (member.courtOfPractice[0]) ? (<div className='dp-pad'>Court of practice : <span className='dp-memberInfo'>{arrayToString(member.courtOfPractice)}</span></div>) : undefined;
     const expertiseElement = (member.expertise[0]) ? (<div className='dp-pad'>Expertise : <span className='dp-memberInfo'>{arrayToString(member.expertise)}</span></div>) : undefined;
-    const emailElement = (member.email) ? (<div className='dp-pad'>Email : <span className='dp-memberInfo'>{member.email}</span></div>) : undefined;
+    const emailElement = (member.email) ? (<div className='dp-pad'>Email : <div className='dp-email dp-memberInfo'>{member.email}</div></div>) : undefined;
     const ageElement = (member.age) ? (<div className='dp-pad'>Age : <span className='dp-memberInfo'>{member.age}</span></div>) : undefined;
     const experienceElement = (member.experience) ? (<div className='dp-pad'>Experience : <span className='dp-memberInfo'>{member.experience}</span></div>) : undefined;
     const residentialAddressElement = (member.address.residentialPincode) ? (<div className='dp-pad'>Residential address : <span className='dp-memberInfo'>{member.address.residentialAddress} {member.address.residentialPincode}</span></div>) : undefined;

@@ -30,17 +30,17 @@
     .dp-space {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-self: center;
         width : 90%;
         .dp-pattern{
             background-image: var(--navbar-background);
             align-items: center;
-            padding : 1rem;
+            width : 100%;
             .dp-pad{
-            
                 padding : 0.75rem;
-                
+                width : 100%;
                 .dp-memberInfo {
+                    width : 100%;
                     display: flex;
                     justify-content: right;
                     font-size: 120%;
@@ -50,7 +50,7 @@
                     background-color: var(--card-info);
                     box-shadow: var(--shadow-very-light);
                     border-radius: 1rem;
-                    color : linen;
+                    color : --var(--light-color);
                 }
             }
         }
@@ -105,6 +105,15 @@ button {
         max-width : 360px;
         font-size: 90%;
     }
+
+    .dp-detailedCard .dp-pattern {
+        width : 100%;
+    }
+
+    .dp-detailedCard .dp-space .dp-pattern .dp-pad .dp-email {
+        font-size: 12px;
+    }
+
     .dp-detailedCard .dp-avatar{
         height: 130px;
         width : 130px;
