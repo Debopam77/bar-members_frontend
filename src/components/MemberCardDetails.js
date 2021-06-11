@@ -73,7 +73,7 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
     //Define the optional elements, display or not to display using ternary operator
     const avatarImageElement = (avatarPic) ? <img src={(avatarPic.url) ? avatarPic.url : blankUserImage} className='dp-avatar' name='avatar' alt='User'></img> : undefined;
     const qualificationElement = (member.qualification[0]) ? (<span className='dp-highlight dp-memberName dp-pad'>{arrayToString(member.qualification, 5)}</span>) : '';
-    const chamberOpenElement = (member.chamberOpenDays[0]) ? (<div className='dp-pad'>Chamber Open on : <span className='dp-memberInfo'>{arrayToDayString(member.chamberOpenDays)}, ({member.chamberOptional})</span></div>) : undefined;
+    const chamberOpenElement = (member.chamberOpenDays[0]) ? (<div className='dp-pad'>Chamber Open on : <span className='dp-memberInfo'>{arrayToDayString(member.chamberOpenDays)} {(member.chamberOptional) ? ', (' +member.chamberOptional + ')' : undefined}</span></div>) : undefined;
     const certificateElement = (member.certificates[0]) ? (<div className='dp-pad'>Certificates : <span className='dp-memberInfo'>{arrayToString(member.certificates, 15)}</span></div>) : undefined;
     const courtsElement = (member.courtOfPractice[0]) ? (<div className='dp-pad'>Court of practice : <span className='dp-memberInfo'>{arrayToString(member.courtOfPractice)}</span></div>) : undefined;
     const expertiseElement = (member.expertise[0]) ? (<div className='dp-pad'>Expertise : <span className='dp-memberInfo'>{arrayToString(member.expertise)}</span></div>) : undefined;

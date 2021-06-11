@@ -272,6 +272,9 @@ function AddEditMember({member}) {
                     onChange={getValue}
                     defaultChecked={(chamberOpenDays[key+1]) ? true : false}/></div>);
                 })}</div>
+                
+                <div className='descriptionInput'><div className='description'>Chamber additional information (Optional)</div>
+                <input type="text" name={'chamberOptional'} defaultValue={member.chamberOptional} onChange={getValue}></input></div>
 
                 <div className='descriptionInput'><div className='description'>Certificates</div>
                 <input type="text" name={'certificates'} defaultValue={member.certificates} onChange={getValue}></input></div>
