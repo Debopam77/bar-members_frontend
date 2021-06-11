@@ -61,12 +61,13 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
         return (<div>Not logged In</div>);
     }
 
-    //Define the optional edit and delete buttons
+    //Define the optional edit, delete and view card buttons
     const editButton = (<button onClick={()=>{setClicked([true, false, false, false])}}><div className='dp-editIcon'></div>Edit</button>);
     const deleteButton = (<button onClick={()=>{setClicked([false, true, false, false])}} ><div className='dp-deleteIcon'></div></button>);
     const approveButton = (<button onClick={()=>{setClicked([false, false, true, false])}} name='approve'>Approve</button>);
-    const printButton = (<button onClick={()=>{setClicked([false, false, false, true])}} name='approve'>Print</button>);
+    const viewCardButton = (<button onClick={()=>{setClicked([false, false, false, true])}} name='viewCard'>Show Card</button>);
     const disApproveButton = (<button onClick={()=>{setClicked([false, false, true])}} name='dis-approve'>Dis-approve</button>);
+    
     const notApprovedClass = (!isApproved) ? 'backgroundUnset' : '';
 
     //Define the optional elements, display or not to display using ternary operator
@@ -140,10 +141,9 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
     //If the print button is clicked
     if(clicked[3]) {
         //Start the print utility
-        console.log('Print');
         return (
             <>
-                <Redirect to={'/members/print/?phone='+member.phone} />
+                <Redirect to={'/members/showCard/?phone='+member.phone} />
             </>);
     }
 
@@ -172,7 +172,7 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
                     <div className='dp-buttonDock'>
                         {(buttonsVisible)? editButton : undefined}
                         {(buttonsVisible && isAdmin && !isApproved)? approveButton : ( (buttonsVisible && isAdmin && isApproved) ? disApproveButton : undefined)}
-                        {(buttonsVisible && isAdmin) ? printButton : undefined}
+                        {(buttonsVisible) ? viewCardButton : undefined}
                         {(buttonsVisible)? deleteButton : undefined}
                     </div>
                     

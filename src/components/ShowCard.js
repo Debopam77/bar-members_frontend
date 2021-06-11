@@ -1,10 +1,17 @@
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import '../style/MemberCard.scss';
 import generateQRCode from '../utilFunctions/generateQRCode';
-import MemberCard from '../components/MemberCard';
-import MemberCardBack from '../components/MemberCardBack';
+import MemberCard from './MemberCard';
+import MemberCardBack from './MemberCardBack';
 
-const Print = ({members}) => {
+const ShowCard = ({members}) => {
+
+    const [loggedInUserIsAdmin, setLoggedInUserIsAdmin] = useState(undefined);
+    //Get user that is logged in
+    useEffect(()=> {
+        setLoggedInUserIsAdmin(JSON.parse(localStorage.getItem('loggedInUser')).member.isAdmin);
+    }, []);
+
     //Extracting the phone number from the url
     const queryParams = new URLSearchParams(window.location.search)
     const phoneNumber = queryParams.get('phone');
@@ -14,7 +21,7 @@ const Print = ({members}) => {
         window.print();
     };
     //Print button defination
-    let printButton = <button onClick={printListner}>Print</button>;
+    let printButton = (loggedInUserIsAdmin) ? (<button onClick={printListner}>Print</button>) : undefined;
 
     //Get member object from the phone number
     const member = (members.filter((member)=> (member.phone === phoneNumber)))[0];
@@ -27,7 +34,7 @@ const Print = ({members}) => {
 
     return (
         <>
-            <h2>To Print</h2>
+            <h2>Card</h2>
             <div className='member'>
                 <MemberCard member={member}/>
             </div>
@@ -41,4 +48,4 @@ const Print = ({members}) => {
     );
 }
 
-export default Print;
+export default ShowCard;

@@ -145,11 +145,24 @@ h2 {
         justify-content: center;
         align-items: center;
         .signatureSpace {
-            background-color: var(--light-color);
+            background-color: var(--signature-field);
             border-radius: 1rem;
             padding : 1.5rem;
-            margin: 1rem;
+            margin: 0.25rem;
             width : 9rem;
+        }
+
+        .dateElement {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .dateSpace {
+                background-color: var(--signature-field);
+                border-radius: 1rem;
+                padding : 1rem;
+                margin: 0.5rem;
+                width : 9rem;
+            }
         }
         
     }
@@ -205,5 +218,12 @@ h2 {
     }
     .QRCodeURL {
         font-size: 80%;
+    }
+}
+
+@media print {
+    .card {
+        box-shadow: unset;
+        border: unset;
     }
 }

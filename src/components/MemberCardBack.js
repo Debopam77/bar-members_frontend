@@ -15,6 +15,12 @@ function MemberCardBack({src, url}) {
                 <div className='centerQRCode'>
                     <img src={imageSRC} className='QRCode' alt='qrcode'></img>
                     <div className='signature'>
+
+                        <div className='dateElement'>
+                            <div className='dateText'>Issue Date :</div>
+                            <div className='dateSpace'></div>
+                        </div>
+                        
                         <div className='signatureSpace'/>
                         <div className='signatureText'>Secretary (DLBA, BKP)</div>
                     </div>

@@ -18,7 +18,7 @@ function AddEditMember({member}) {
     useEffect(()=>{},[sent]);
 
     //Values that cannot be changed
-    const excludedAttributes = ['phone', 'registration', 'updatedAt', 'age', 'isAdmin', 'chamberOpenDays', 'courtOfPractice', 'expertise', 'certificates', 'qualification'];
+    const excludedAttributes = ['phone', 'registration', 'updatedAt', 'age', 'isAdmin', 'chamberOpenDays', 'courtOfPractice', 'expertise', 'certificates', 'qualification', 'isApproved'];
     let defaultValue = Object.keys(member)
         .filter((key) => !excludedAttributes.includes(key))
         .reduce((obj, key) => {
@@ -252,7 +252,7 @@ function AddEditMember({member}) {
                 <input type="text" name={'email'} defaultValue={member.email} onChange={getValue}></input></div>
 
                 <div className='descriptionInput'><div className='description'>BAR Registration number</div>
-                <input type="text" name={'registration'} defaultValue={''} onChange={getValue}></input></div>
+                <input type="text" name={'registration'} defaultValue={member.registration} onChange={getValue}></input></div>
 
                 <div className='descriptionInput'><div className='description'>Chamber Address</div>
                 <input type="text" name={'address.chamberAddress'} defaultValue={member.address.chamberAddress} onChange={getValue}></input></div>
