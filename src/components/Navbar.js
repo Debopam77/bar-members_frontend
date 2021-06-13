@@ -24,11 +24,6 @@ function Navbar({loggedIn}) {
             class: 'searchIcon nav-links',
         },
         {
-            title : 'Home',
-            url: '/home',
-            class: 'nav-links'
-        },
-        {
             title : 'Members',
             url: '/members',
             class: 'nav-links'
@@ -58,13 +53,13 @@ function Navbar({loggedIn}) {
     //Things to change once an user logs in
     if(loggedIn){
         //Add logout link
-        navBarItems[4] = {
+        navBarItems[3] = {
             title : 'Logout',
             url: '/members/logout',
             class: 'nav-links'
         }
         //Remove the login link
-        navBarItems.splice(3, 1);
+        navBarItems.splice(2, 1);
 
         //Add an image of the user an point it to the user profile
         myAvatarElement = (user) ? <a href='/members/detail'><img src={(user.member.avatar && user.member.avatar.data.length>0) ? getFileURL(convertBufferToImg(user.member.avatar.data)) : blankUserImage} className='avatar' alt='avatar'></img></a> : undefined;

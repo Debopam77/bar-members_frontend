@@ -19,7 +19,7 @@ const compressImage = async (file)=> {
 const convertImgToBuffer = async (file)=> {
     
     if(parseInt(file.size) < 2000000) {
-        const imgFileTypes = ['.jpeg', '.png', '.jpg'];
+        const imgFileTypes = ['.jpeg', '.png', '.jpg', '.jfif'];
         imgFileTypes.forEach((element) => {
             if(file.name.toLowerCase().includes(element))
                 imgFileTypes.push('Is an Image');
