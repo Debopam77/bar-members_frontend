@@ -45,40 +45,30 @@ function Router() {
     <BrowserRouter>
     <Navbar loggedIn={loggedIn}/>
         <Routes>
-            <Route path='/members/login'>
-                <Login setLoggedIn={setLoggedIn}/>
-            </Route>
-            <Route path='/members/logout'>
-                <Logout setLoggedIn={setLoggedIn}/>
-            </Route>
-            <Route path='/members/delete'>
-                <DeleteMember setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
-            </Route>
-            <Route path='/members/showCard'>
-                <ShowCard members={members}/>
-            </Route>
-            <Route path='/members/detail'>
-                <MemberCardDetails members={members} loggedIn={loggedIn}/>
-            </Route>
-            <Route path='/members'>
-                {//Sending the members state array as props
+            <Route path='/members/login' element={<Login setLoggedIn={setLoggedIn}/>}/>
+
+            <Route path='/members/logout' element= {<Logout setLoggedIn={setLoggedIn}/>}/>
+                
+            <Route path='/members/delete' element={<DeleteMember setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
+
+            <Route path='/members/showCard' element = {<ShowCard members={members}/>}/>
+
+            <Route path='/members/detail' element = {<MemberCardDetails members={members} loggedIn={loggedIn}/>}/>
+
+            {//Sending the members state array as props
                 }
-                <Members members={members} loggedIn={loggedIn}/>
-            </Route>
-            <Route path='/aboutUs'>
-                <AboutUs/>
-            </Route>
-            <Route path='/register'>
-                <RegisterUser setLoggedIn={setLoggedIn}/>
-            </Route>
-            <Route path='/searchMembers'>
-                <SearchMembers members={members}/>
-            </Route>
-            <Route path='/'>
+            <Route path='/members' element = {<Members members={members} loggedIn={loggedIn}/>}/>
+
+            <Route path='/aboutUs' element = {<AboutUs/>}/>
+                
+            <Route path='/register' element = {<RegisterUser setLoggedIn={setLoggedIn}/>}/>
+
+            <Route path='/searchMembers' element = {<SearchMembers members={members}/>}/>
+                
+            <Route path='/' element = {<Members members={members} loggedIn={loggedIn}/>}/>
                 {//Redirect to members page
                 }
-                <Members members={members} loggedIn={loggedIn}/>
-            </Route>
+
         </Routes>
     </BrowserRouter>
     );
