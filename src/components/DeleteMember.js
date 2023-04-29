@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import axios from 'axios';
 import loaderElement from '../utilFunctions/loaderElement';
 
@@ -53,7 +53,7 @@ function DeleteMember({member, isAdmin}) {
 
     //Redirect if set true
     if(redirectState){
-        return (<Redirect to='/home'/>);
+        return (<Navigate to='/home'/>);
     }
 
     if(member.isAdmin)

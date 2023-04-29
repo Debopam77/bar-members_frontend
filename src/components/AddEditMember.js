@@ -5,7 +5,7 @@ import dateFormat from 'dateformat';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import {arrToObj, keyToValueConvert} from '../utilFunctions/arrayObjectConversions';
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import blankUserImage from '../resources/img/user.png'
 import {convertImgToBuffer, convertBufferToImg} from '../utilFunctions/avatarImageConversions';
 import loaderElement from '../utilFunctions/loaderElement';
@@ -208,7 +208,7 @@ function AddEditMember({member}) {
         //Redirect back to the details page
         return (
         <>
-            <Redirect to='/' />
+            <Navigate to='/' />
         </>);
     }
 

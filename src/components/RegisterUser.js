@@ -3,7 +3,7 @@ import loaderElement from '../utilFunctions/loaderElement';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 
 function RegisterUser({setLoggedIn}) {
 
@@ -79,7 +79,7 @@ function RegisterUser({setLoggedIn}) {
     if(redirectToHome){
         return (
             <>
-                <Redirect to='/' />
+                <Navigate to='/' />
             </>
         );
     }

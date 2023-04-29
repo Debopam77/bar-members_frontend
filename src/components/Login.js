@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../style/index.scss';
 import '../style/loginRegister.scss';
 import Axios from 'axios';
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import loaderElement from '../utilFunctions/loaderElement';
 
 function Login({setLoggedIn}) {
@@ -56,7 +56,7 @@ function Login({setLoggedIn}) {
     if(redirectState) {
         return (
             <>
-                <Redirect to='/' />
+                <Navigate to='/' />
             </>        
         );
     }

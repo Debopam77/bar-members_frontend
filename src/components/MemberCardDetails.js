@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import AddEditMember from '../components/AddEditMember';
 import DeleteMember from '../components/DeleteMember';
 import '../style/MemberCardDetails.scss'
@@ -143,7 +143,7 @@ function MemberCardDetails({member, members, loggedIn, isAdmin}) {
         //Start the print utility
         return (
             <>
-                <Redirect to={'/members/showCard/?phone='+member.phone} />
+                <Navigate to={'/members/showCard/?phone='+member.phone} />
             </>);
     }
 

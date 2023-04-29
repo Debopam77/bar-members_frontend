@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Axios from 'axios';
 import Members from '../components/Members';
 import Navbar from '../components/Navbar';
@@ -44,7 +44,7 @@ function Router() {
     return  (
     <BrowserRouter>
     <Navbar loggedIn={loggedIn}/>
-        <Switch>
+        <Routes>
             <Route path='/members/login'>
                 <Login setLoggedIn={setLoggedIn}/>
             </Route>
@@ -79,7 +79,7 @@ function Router() {
                 }
                 <Members members={members} loggedIn={loggedIn}/>
             </Route>
-        </Switch>
+        </Routes>
     </BrowserRouter>
     );
 }
